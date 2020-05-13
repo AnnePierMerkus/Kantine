@@ -1,25 +1,27 @@
+package main.java;
+
 import java.util.*;
 
-public class KantineSimulatie {
+public class CanteenSimulation_2 {
 
     // kantine
-    private Kantine kantine;
+    private Canteen canteen;
 
     // kantineaanbod
-    private KantineAanbod kantineaanbod;
+    private CanteenSelection canteenSelection;
 
     // random generator
     private Random random;
 
-    // aantal artikelen
+    // amount of articles
     private static final int AANTAL_ARTIKELEN = 4;
 
-    // artikelen
-    private static final String[] artikelnamen =
-            new String[] {"Koffie", "Broodje pindakaas", "Broodje kaas", "Appelsap"};
+    // articles
+    private static final String[] articleNames =
+            new String[] {"Coffee", "PB sandwich", "Cheese sandwich", "Apple juice"};
 
-    // prijzen
-    private static double[] artikelprijzen = new double[] {1.50, 2.10, 1.65, 1.65};
+    // prices
+    private static double[] articlePrices = new double[] {1.50, 2.10, 1.65, 1.65};
 
     // minimum en maximum aantal artikelen per soort
     private static final int MIN_ARTIKELEN_PER_SOORT = 10000;
@@ -37,28 +39,27 @@ public class KantineSimulatie {
      * Constructor
      *
      */
-    public KantineSimulatie() {
-        kantine = new Kantine();
+    public CanteenSimulation_2() {
+        canteen = new Canteen();
         random = new Random();
-        int[] hoeveelheden =
+        int[] amount =
                 getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
-        kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden);
+        canteenSelection = new CanteenSelection(articleNames, articlePrices, amount);
 
-        kantine.setKantineAanbod(kantineaanbod);
+        canteen.setCanteenSelection(canteenSelection);
     }
 
     /**
-     * Methode om een array van random getallen liggend tussen min en max van de gegeven lengte te
-     * genereren
+     * Method to create a array with random numbers of given length with numbers between min and max
      *
-     * @param lengte
+     * @param length
      * @param min
      * @param max
-     * @return De array met random getallen
+     * @return The array with random numbers
      */
-    private int[] getRandomArray(int lengte, int min, int max) {
-        int[] temp = new int[lengte];
-        for (int i = 0; i < lengte; i++) {
+    private int[] getRandomArray(int length, int min, int max) {
+        int[] temp = new int[length];
+        for (int i = 0; i < length; i++) {
             temp[i] = getRandomValue(min, max);
         }
 
@@ -66,11 +67,12 @@ public class KantineSimulatie {
     }
 
     /**
+     * Method to generate a random number between min and max.
      * Methode om een random getal tussen min(incl) en max(incl) te genereren.
      *
      * @param min
      * @param max
-     * @return Een random getal
+     * @return A random number
      */
     private int getRandomValue(int min, int max) {
         return random.nextInt(max - min + 1) + min;
@@ -80,48 +82,47 @@ public class KantineSimulatie {
      * Methode om op basis van een array van indexen voor de array artikelnamen de bijhorende array
      * van artikelnamen te maken
      *
-     * @param indexen
-     * @return De array met artikelnamen
+     * @param indexes
+     * @return Tha array with article names
      */
-    private String[] geefArtikelNamen(int[] indexen) {
-        String[] artikelen = new String[indexen.length];
+    private String[] giveArticleNames(int[] indexes) {
+        String[] articles = new String[indexes.length];
 
-        for (int i = 0; i < indexen.length; i++) {
-            artikelen[i] = artikelnamen[indexen[i]];
+        for (int i = 0; i < indexes.length; i++) {
+            articles[i] = articleNames[indexes[i]];
 
         }
 
-        return artikelen;
+        return articles;
     }
 
     /**
-     * Deze methode simuleert een aantal dagen
-     * in het verloop van de kantine
+     * This method simulates an amount of days passing in the canteen
      *
-     * @param dagen
+     * @param days
      */
-    public void simuleer(int dagen) {
-        // for lus voor dagen
-        for(int i = 0; i < dagen; i++) {
+    public void simuleer(int days) {
+        // for lus voor days
+        for(int i = 0; i < days; i++) {
 
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = ... ;
+            int personAmount = ... ;
 
             // laat de personen maar komen...
-            for (int j = 0; j < aantalpersonen; j++) {
+            for (int j = 0; j < personAmount; j++) {
 
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
-                int aantalartikelen = ... ;
+                int articleArmount = ... ;
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
                 array int[] tepakken = getRandomArray(
-                    aantalartikelen, 0, AANTAL_ARTIKELEN-1);
+                    articleArmount, 0, AANTAL_ARTIKELEN-1);
 
                 // vind de artikelnamen op basis van
                 // de indexen hierboven
-                String[] artikelen = geefArtikelNamen(tepakken);
+                String[] artikelen = giveArticleNames(tepakken);
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan

@@ -1,23 +1,24 @@
-public class KantineSimulatie {
+package main.java;
 
-    private Kantine kantine;
+public class CanteenSimulation_1 {
+
+    private Canteen canteen;
 
     public static final int DAGEN = 7;
 
     /**
      * Constructor
      */
-    public KantineSimulatie() {
-        kantine = new Kantine();
+    public CanteenSimulation_1() {
+        canteen = new Canteen();
     }
 
     /**
-     * Deze methode simuleert een aantal dagen in het
-     * verloop van de kantine
+     * This method simulates an amount of days passing in the canteen
      *
-     * @param dagen
+     * @param days
      */
-    public void simuleer(int dagen) {
+    public void simulate(int days) {
 
         // herhaal voor elke dag
         for (int i = 0; ...) {
@@ -39,17 +40,17 @@ public class KantineSimulatie {
     }
 
     /**
-     * Start een simulatie
+     * Start a simulation
      */
     public static void main(String[] args) {
-        int dagen;
+        int days;
 
         if (args.length == 0) {
-            dagen = DAGEN;
+            days = DAGEN;
         } else {
-            dagen = Integer.parseInt(args[0]);
+            days = Integer.parseInt(args[0]);
         }
 
-        simulate(dagen);
+        simulate(days);
     }
 }
