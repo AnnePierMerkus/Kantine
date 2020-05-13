@@ -23,7 +23,7 @@ public class Artikel {
     /**
      * Getter for Price
      *
-     * @return
+     * @return price
      */
     public float getPrice() {
         return price;
@@ -32,7 +32,7 @@ public class Artikel {
     /**
      * Getter for Name
      *
-     * @return
+     * @return name
      */
     public String getName() {
         return name;
