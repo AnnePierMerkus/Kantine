@@ -1,4 +1,7 @@
 package main.java;
+
+import java.util.Arrays;
+
 public class Date {
 
 	private int day;
@@ -12,11 +15,13 @@ public class Date {
 		this.year = 0;
 	}
 
-	public Date(int day, int month, int year)
-	{
-		this.day = day;
-		this.month = month;
-		this.year = year;
+	public Date(int day, int month, int year) {
+		this();
+		if (doesDateExist(day, month, year)) {
+			this.day = day;
+			this.month = month;
+			this.year = year;
+		}
 	}
 
 	public int getDay() {
@@ -43,12 +48,34 @@ public class Date {
 		this.year = year;
 	}
 
-	public boolean bestaatDatum(int day, int month, int year)
+	public boolean doesDateExist(int day, int month, int year)
 	{
-		if (day >= 1)
+		if (day >= 1 && day <= 31)
 		{
 			if (month  >= 1 || month <= 12)
 			{
+				if (month == 2)
+				{
+					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+					{
+						if (day > 29)
+						{
+							return false;
+						}
+					}
+					else if (day > 28)
+					{
+						return false;
+					}
+				}
+				else if (Arrays.asList(4, 6, 9, 11).contains(month))
+				{
+					if (day > 30)
+					{
+						return false;
+					}
+				}
+
 				if (year >= 1900 || year <= 2100)
 				{
 					return true;
@@ -57,7 +84,6 @@ public class Date {
 		}
 
 		return false;
-
 	}
 
 	/**
