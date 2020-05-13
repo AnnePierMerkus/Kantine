@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Tray {
     private ArrayList<Article> articles;
-
+    private Person customer;
     /**
      * Constructor
      */
@@ -14,10 +14,31 @@ public class Tray {
         articles = new ArrayList<>();
     }
 
-    /**ddddfsd
+    public Tray(Person customer) {
+        this.customer = customer;
+    }
+
+
+    /**
+     * Getter for customer
+     */
+    public Person getCustomer() {
+        return customer;
+    }
+
+    /**
+     * Setter for customer
+     *
+     * @param customer customer
+     */
+    public void setCustomer(Person customer) {
+        this.customer = customer;
+    }
+
+    /**
      * Method to add Article to Tray
      *
-     * @param article
+     * @param article article
      */
     public void addTo(Article article) {
         articles.add(article);
@@ -43,7 +64,16 @@ public class Tray {
      * @return Total price
      */
     public double getTotalPrice() {
-        // method body omitted
+        int price = 0;
+        for (Article article: articles) {
+            price += article.getPrice();
+        }
+
+        return price;
+    }
+
+    public ArrayList<Article> getArticles() {
+        return articles;
     }
 }
 

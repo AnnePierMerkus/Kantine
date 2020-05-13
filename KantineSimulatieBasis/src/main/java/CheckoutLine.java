@@ -1,14 +1,15 @@
 package main.java;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class CheckoutLine {
+    ArrayList<Tray> customerLine;
 
     /**
      * Constructor
      */
     public CheckoutLine() {
+        customerLine = new ArrayList<>();
         // method body omitted
     }
 
@@ -18,7 +19,7 @@ public class CheckoutLine {
      * @param customer
      */
     public void addToLine(Tray customer) {
-        // method body omitted
+       customerLine.add(customer);
     }
 
     /**
@@ -29,15 +30,22 @@ public class CheckoutLine {
      * @return first Customer in line or null if no line exists
      */
     public Tray firstInLine() {
-        // method body omitted
+
+        if (lineExists()) {
+            Tray firstCustomer = customerLine.get(0);
+            customerLine.remove(0);
+            return firstCustomer;
+        }else {
+            return null;
+        }
     }
 
     /**
-     * This methos lookf if there is an line
+     * This method looks if there is an line
      *
      * @return if there's a row or not
      */
     public boolean lineExists() {
-        // method body omitted
+        return !customerLine.isEmpty();
     }
 }
