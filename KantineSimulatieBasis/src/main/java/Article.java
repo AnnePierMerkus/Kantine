@@ -17,6 +17,15 @@ public class Article {
         this.price = price;
     }
 
+    public String toString()
+    {
+        StringBuilder str = new StringBuilder()
+                .append(name)
+                .append(", ")
+                .append(price);
+
+        return str.toString();
+    }
 
     //Getters and setters for Price and Name
 

@@ -7,6 +7,36 @@ public class Person {
     Date birthDate;
     char gender;
 
+    public Person (String burgerServiceNumber, String firstName, String lastName, Date birthDate, char gender)
+    {
+        setBurgerServiceNumber(burgerServiceNumber);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setBirthDate(birthDate);
+        setGender(gender);
+    }
+
+    public Person(String burgerServiceNumber, String firstName, String lastName)
+    {
+        this(burgerServiceNumber, firstName, lastName, new Date(), 'o');
+    }
+
+    public String toString()
+    {
+        StringBuilder str = new StringBuilder()
+                .append(burgerServiceNumber)
+                .append(", ")
+                .append(firstName)
+                .append(", ")
+                .append(lastName)
+                .append(", ")
+                .append(getBirthDate())
+                .append(", ")
+                .append(gender);
+
+        return str.toString();
+    }
+
     public String getBurgerServiceNumber() {
         return burgerServiceNumber;
     }
