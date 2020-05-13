@@ -32,11 +32,10 @@ public class Person {
         {
             return "Female";
         }
-        else if (Character.toLowerCase(gender) == 'u')
+        else
         {
             return "Unknown";
         }
-        return gender;
     }
 
     public void setBurgerServiceNumber(String burgerServiceNumber) {
