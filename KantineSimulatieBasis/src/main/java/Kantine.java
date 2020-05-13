@@ -1,14 +1,16 @@
+package main.java;
+
 public class Kantine {
 
-    private Kassa kassa;
-    private KassaRij kassarij;
+    private CashDesk cashDesk;
+    private CheckoutLine kassarij;
 
     /**
      * Constructor
      */
     public Kantine() {
-        kassarij = new KassaRij();
-        kassa = new Kassa(kassarij);
+        kassarij = new CheckoutLine();
+        cashDesk = new CashDesk(kassarij);
     }
 
     /**

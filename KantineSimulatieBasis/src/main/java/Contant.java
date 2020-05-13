@@ -1,4 +1,5 @@
-public class Contant extends Betaalwijze {
+package main.java;
+public class Contant extends PayMethod {
     /**
      * Methode om betaling af te handelen
      */

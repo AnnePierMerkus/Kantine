@@ -1,6 +1,6 @@
 package main.java;
 
-public class Card extends Betaalwijze {
+public class Card extends PayMethod {
 
 
 

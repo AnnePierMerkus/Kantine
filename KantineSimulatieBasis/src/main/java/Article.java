@@ -3,16 +3,16 @@ package main.java;
 
 import java.util.ArrayList;
 
-public class Artikel {
+public class Article {
     float price;
     String name;
 
-    public Artikel(){
+    public Article(){
 
 
     }
 
-    public Artikel(String name, float price) {
+    public Article(String name, float price) {
         this.name = name;
         this.price = price;
     }

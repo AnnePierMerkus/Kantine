@@ -1,8 +1,10 @@
+package main.java;
+
 import java.util.*;
 
 public class KantineAanbod {
     // interne opslag voorraad
-    private HashMap<String, ArrayList<Artikel>> aanbod;
+    private HashMap<String, ArrayList<Article>> aanbod;
     private HashMap<String, Integer> startVoorraad;
     private HashMap<String, Double> prijzen;
 
@@ -12,13 +14,13 @@ public class KantineAanbod {
      * dimensies van de drie arrays moeten wel gelijk zijn!
      */
     public KantineAanbod(String[] artikelnaam, double[] prijs, int[] hoeveelheid) {
-        aanbod = new HashMap<String, ArrayList<Artikel>>();
+        aanbod = new HashMap<String, ArrayList<Article>>();
         startVoorraad = new HashMap<String, Integer>();
         prijzen = new HashMap<String, Double>();
         for (int i = 0; i < artikelnaam.length; i++) {
-            ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
+            ArrayList<Article> artikelen = new ArrayList<Article>();
             for (int j = 0; j < hoeveelheid[i]; j++) {
-                artikelen.add(new Artikel(artikelnaam[i], prijs[i]));
+                artikelen.add(new Article(artikelnaam[i], prijs[i]));
             }
             startVoorraad.put(artikelnaam[i], hoeveelheid[i]);
             prijzen.put(artikelnaam[i], prijs[i]);
@@ -27,12 +29,12 @@ public class KantineAanbod {
     }
 
     private void vulVoorraadAan(String productnaam) {
-        ArrayList<Artikel> huidigeVoorraad = aanbod.get(productnaam);
+        ArrayList<Article> huidigeVoorraad = aanbod.get(productnaam);
         int startHoeveelheid = startVoorraad.get(productnaam);
         int huidigeHoeveelheid = huidigeVoorraad.size();
         double prijs = prijzen.get(productnaam);
         for (int j = huidigeHoeveelheid; j < startHoeveelheid; j++) {
-            huidigeVoorraad.add(new Artikel(productnaam, prijs));
+            huidigeVoorraad.add(new Article(productnaam, prijs));
         }
         aanbod.put(productnaam, huidigeVoorraad);
     }
@@ -41,7 +43,7 @@ public class KantineAanbod {
      * Private methode om de lijst van artikelen te krijgen op basis van de naam van het artikel.
      * Retourneert null als artikel niet bestaat.
      */
-    private ArrayList<Artikel> getArrayList(String productnaam) {
+    private ArrayList<Article> getArrayList(String productnaam) {
         return aanbod.get(productnaam);
     }
 
@@ -49,14 +51,14 @@ public class KantineAanbod {
      * Private methode om een Artikel van de stapel artikelen af te pakken. Retourneert null als de
      * stapel leeg is.
      */
-    private Artikel getArtikel(ArrayList<Artikel> stapel) {
+    private Article getArtikel(ArrayList<Article> stapel) {
         if (stapel == null) {
             return null;
         }
         if (stapel.size() == 0) {
             return null;
         } else {
-            Artikel a = stapel.get(0);
+            Article a = stapel.get(0);
             stapel.remove(0);
             if (stapel.size() <= 10)
                 vulVoorraadAan(a.getNaam());
@@ -71,7 +73,7 @@ public class KantineAanbod {
      * @param naam (van artikel)
      * @return artikel (of null)
      */
-    public Artikel getArtikel(String productnaam) {
+    public Article getArtikel(String productnaam) {
         return getArtikel(getArrayList(productnaam));
     }
 }

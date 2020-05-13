@@ -2,12 +2,10 @@ package main.java;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Stack;
 
 
 public class Tray {
-    private ArrayList<Artikel> articles;
+    private ArrayList<Article> articles;
 
     /**
      * Constructor
@@ -16,12 +14,12 @@ public class Tray {
         articles = new ArrayList<>();
     }
 
-    /**
+    /**ddddfsd
      * Method to add Article to Tray
      *
      * @param article
      */
-    public void addTo(Artikel article) {
+    public void addTo(Article article) {
         articles.add(article);
     }
 
@@ -32,7 +30,7 @@ public class Tray {
      */
     public int getArticleAmount() {
         int amount = 0;
-        for (Artikel article: articles
+        for (Article article: articles
              ) {
                 amount++;
         }
