@@ -17,12 +17,12 @@ public class Tray {
     }
 
     /**
-     * Method to add Artikel to Dienblad
+     * Method to add Article to Tray
      *
      * @param article
      */
     public void addTo(Artikel article) {
-        // method body omitted
+        articles.add(article);
     }
 
     /**
@@ -31,7 +31,12 @@ public class Tray {
      * @return Amount of articles
      */
     public int getArticleAmount() {
-        // method body omitted
+        int amount = 0;
+        for (Artikel article: articles
+             ) {
+                amount++;
+        }
+        return amount;
     }
 
     /**
