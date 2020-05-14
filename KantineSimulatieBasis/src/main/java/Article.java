@@ -8,8 +8,6 @@ public class Article {
     String name;
 
     public Article(){
-
-
     }
 
     public Article(String name, float price) {
@@ -17,6 +15,10 @@ public class Article {
         this.price = price;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString()
     {
         StringBuilder str = new StringBuilder()

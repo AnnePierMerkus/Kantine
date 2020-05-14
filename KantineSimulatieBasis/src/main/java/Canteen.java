@@ -18,15 +18,21 @@ public class Canteen {
      * to the tray. Finally the Person gets added to the Checkout line.
      */
     public void loopPakSluitAan() {
-        // method body omitted
+        Person customer = new Person("123456789", "Anne Pier", "Merkus", new Date(10, 7, 1998), 'M');
+        Tray tray = new Tray(customer);
+
+        tray.addTo(new Article("Test1", 12.50F));
+        tray.addTo(new Article("Test2", 12.50F));
+
+        checkoutLine.addToLine(tray);
     }
 
     /**
      * This method handles the checkout line.
      */
     public void handleCheckoutLine() {
-        while () {
-            // omitted
+        while (checkoutLine.lineExists()) {
+            cashDesk.pay(checkoutLine.firstInLine());
         }
     }
 
@@ -35,8 +41,8 @@ public class Canteen {
      *
      * @return amount of cash in cashdesk
      */
-    public double cashAmountInCashDesk() {
-        // method body omitted
+    public double getCashAmountInCashDesk() {
+        return cashDesk.getMoneyAmountInCashDesk();
     }
 
     /**
@@ -44,14 +50,14 @@ public class Canteen {
      *
      * @return amount of checked out articles
      */
-    public int articlesAmount() {
-        // method body omitted
+    public int getArticlesAmount() {
+        return cashDesk.getArticleAmount();
     }
 
     /**
      * This method resets the kept count of the amount of checked out articles en "empties" the content of the cashdesk.
      */
     public void resetCashDesk() {
-        // method body omitted
+        cashDesk.resetCashDesk();
     }
 }

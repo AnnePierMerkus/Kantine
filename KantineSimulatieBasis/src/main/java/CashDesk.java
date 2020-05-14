@@ -42,7 +42,7 @@ public class CashDesk {
      *
      * @return amount of money in the cashdesk
      */
-    public double moneyAmountInCashDesk() {
+    public double getMoneyAmountInCashDesk() {
         return cashInDesk;
     }
 
