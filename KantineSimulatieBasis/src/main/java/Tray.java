@@ -1,17 +1,17 @@
 package main.java;
 
-
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Stack;
 
 
 public class Tray {
-    private ArrayList<Article> articles;
+    private Stack<Article> articles;
     private Person customer;
     /**
      * Constructor
      */
     public Tray() {
-        articles = new ArrayList<>();
+        articles = new Stack<>();
     }
 
     public Tray(Person customer) {
@@ -41,7 +41,7 @@ public class Tray {
      * @param article article
      */
     public void addTo(Article article) {
-        articles.add(article);
+        articles.push(article);
     }
 
     /**
@@ -51,8 +51,7 @@ public class Tray {
      */
     public int getArticleAmount() {
         int amount = 0;
-        for (Article article: articles
-             ) {
+        for (Article article: articles) {
                 amount++;
         }
         return amount;
@@ -72,7 +71,7 @@ public class Tray {
         return price;
     }
 
-    public ArrayList<Article> getArticles() {
+    public Stack<Article> getArticles() {
         return articles;
     }
 }

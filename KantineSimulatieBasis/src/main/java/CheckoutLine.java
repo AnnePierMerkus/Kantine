@@ -1,15 +1,18 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class CheckoutLine {
-    ArrayList<Tray> customerLine;
+    LinkedList<Tray> customerLine;
 
     /**
      * Constructor
      */
     public CheckoutLine() {
-        customerLine = new ArrayList<>();
+        customerLine = new LinkedList<Tray>() {
+        };
         // method body omitted
     }
 
