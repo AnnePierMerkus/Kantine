@@ -1,7 +1,7 @@
 package main.java;
 
-import java.util.Iterator;
 import java.util.Stack;
+import java.util.Iterator;
 
 
 public class Tray {
@@ -74,5 +74,11 @@ public class Tray {
     public Stack<Article> getArticles() {
         return articles;
     }
+
+    public Iterator<Article> getArticlesIter() {
+        return articles.iterator();
+    }
+
+
 }
 

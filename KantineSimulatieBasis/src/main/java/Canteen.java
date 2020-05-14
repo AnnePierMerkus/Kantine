@@ -37,27 +37,13 @@ public class Canteen {
     }
 
     /**
-     * This method counts the amount of cash in the cashdesk
      *
-     * @return amount of cash in cashdesk
      */
-    public double getCashAmountInCashDesk() {
-        return cashDesk.getMoneyAmountInCashDesk();
+
+
+    public CashDesk getCashDesk() {
+        return cashDesk;
     }
 
-    /**
-     * This method returns the amount of articles that were checked out at the cashdesk.
-     *
-     * @return amount of checked out articles
-     */
-    public int getArticlesAmount() {
-        return cashDesk.getArticleAmount();
-    }
 
-    /**
-     * This method resets the kept count of the amount of checked out articles en "empties" the content of the cashdesk.
-     */
-    public void resetCashDesk() {
-        cashDesk.resetCashDesk();
-    }
 }
