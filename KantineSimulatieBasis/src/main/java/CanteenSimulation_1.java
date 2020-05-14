@@ -35,13 +35,13 @@ public class CanteenSimulation_1 {
             // verwerk rij voor de kassa
 
             canteen.handleCheckoutLine();
-
+            CashDesk cashdesk = canteen.getCashDesk();
             // toon dagtotalen (artikelen en geld in kassa)
-            System.out.println("dag " + days + canteen.getArticlesAmount() + " artikelen.");
-            System.out.println("dag " + days + canteen.getCashAmountInCashDesk() + " euro in de kassa.");
+            System.out.println("dag " + days + cashdesk.getArticleAmount() + " artikelen.");
+            System.out.println("dag " + days + cashdesk.getMoneyAmountInCashDesk() + " euro in de kassa.");
 
             // reset de kassa voor de volgende dag
-            canteen.resetCashDesk();
+            cashdesk.resetCashDesk();
         }
     }
 

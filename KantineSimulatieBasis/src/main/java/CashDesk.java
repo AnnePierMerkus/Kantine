@@ -1,8 +1,11 @@
 package main.java;
 
+import java.util.Iterator;
+
 public class CashDesk {
     int articleAmount;
     int cashInDesk;
+
 
     /**
      * Constructor
@@ -20,11 +23,18 @@ public class CashDesk {
      * @param customer that needs to pay
      */
     public void pay(Tray customer) {
-        int totalPrice = 0;
         for (Article article: customer.getArticles()) {
-            totalPrice += article.getPrice();
+            cashInDesk += article.getPrice();
             articleAmount++;
-            cashInDesk += totalPrice;
+        }
+
+        Iterator<Article> it = customer.getArticlesIter();
+        int total = 0;
+        int customerArticlesAmount = 0;
+
+        while (it.hasNext()) {
+            total += it.next().getPrice();
+            customerArticlesAmount++;
         }
     }
 

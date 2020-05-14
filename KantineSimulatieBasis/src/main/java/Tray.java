@@ -2,6 +2,7 @@ package main.java;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Tray {
@@ -51,8 +52,7 @@ public class Tray {
      */
     public int getArticleAmount() {
         int amount = 0;
-        for (Article article: articles
-             ) {
+        for (Article article: articles) {
                 amount++;
         }
         return amount;
@@ -75,5 +75,11 @@ public class Tray {
     public ArrayList<Article> getArticles() {
         return articles;
     }
+
+    public Iterator<Article> getArticlesIter() {
+        return articles.iterator();
+    }
+
+
 }
 
