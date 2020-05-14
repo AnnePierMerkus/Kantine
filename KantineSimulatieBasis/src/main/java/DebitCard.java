@@ -20,5 +20,6 @@ public class DebitCard extends PayMethod {
      */
     public boolean pay(double amountToPay) {
         // method body omitted
+        return false;
     }
 }
