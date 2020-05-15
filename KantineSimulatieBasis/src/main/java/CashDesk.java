@@ -13,7 +13,6 @@ public class CashDesk {
     public CashDesk(CheckoutLine checkoutLine) {
         articleAmount = 0;
         cashInDesk = 0;
-        // method body omitted
     }
 
     /**
@@ -23,11 +22,6 @@ public class CashDesk {
      * @param customer that needs to pay
      */
     public void pay(Tray customer) {
-        for (Article article: customer.getArticles()) {
-            cashInDesk += article.getPrice();
-            articleAmount++;
-        }
-
         Iterator<Article> it = customer.getArticlesIter();
         int total = 0;
         int customerArticlesAmount = 0;
@@ -36,6 +30,9 @@ public class CashDesk {
             total += it.next().getPrice();
             customerArticlesAmount++;
         }
+
+        cashInDesk+= total;
+        articleAmount+= customerArticlesAmount;
     }
 
     /**
@@ -61,5 +58,6 @@ public class CashDesk {
      */
     public void resetCashDesk() {
         articleAmount = 0;
+        cashInDesk = 0;
     }
 }

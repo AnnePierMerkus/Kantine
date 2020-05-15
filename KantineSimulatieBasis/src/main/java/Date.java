@@ -7,28 +7,28 @@ import java.util.Arrays;
  */
 public class Date {
 	/**
-	 * The date on which the customer was born
+	 * The date on which the person was born
 	 *
 	 * Must have a value between 1-31, or lower for certain months.
 	 */
 	private int day;
 
 	/**
-	 * The month in which the customer was born.
+	 * The month in which the person was born.
 	 *
 	 * Must have a value between 1-12.
 	 */
 	private int month;
 
 	/**
-	 * The year in which the customer was born.
+	 * The year in which the person was born.
 	 *
 	 * Must be between 1900 and 2100.
 	 */
 	private int year;
 
 	/**
-	 * Instantiates a new Date.
+	 * Creates a new instance of Date and initializes the date of birth to 0-0-0.
 	 */
 	public Date()
 	{
@@ -38,11 +38,11 @@ public class Date {
 	}
 
 	/**
-	 * Instantiates a new Date.
+	 * Creates a new instance of Date where the date of birth are the given values.
 	 *
-	 * @param day   the day
-	 * @param month the month
-	 * @param year  the year
+	 * @param day   the day on which the person was born.
+	 * @param month the month in which the person was born.
+	 * @param year  the year in which the person was born.
 	 */
 	public Date(int day, int month, int year) {
 		this();

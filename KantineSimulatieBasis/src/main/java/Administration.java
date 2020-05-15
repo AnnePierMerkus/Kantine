@@ -11,6 +11,7 @@ public class Administration {
      */
     public double calculateAverageAmount(int[] amount) {
         // method body omitted
+        return 0;
     }
 
     /**
@@ -21,6 +22,7 @@ public class Administration {
      */
     public double calculateAverageRevenue(double[] revenue) {
         // method body omitted
+        return 0;
     }
 
     /**
@@ -37,12 +39,12 @@ public class Administration {
         for(int i = 0; i < 7; i++) {
 
             int j = 0;
-            while ( ... ) {
+           /*while ( ... ) {
                 temp[i] += revenue[i + 7 * j];
 
                 // omitted
 
-            }
+            }*/
         }
         return temp;
     }

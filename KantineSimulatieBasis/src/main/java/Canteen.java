@@ -33,7 +33,6 @@ public class Canteen {
     /**
      *
      */
-
     public CashDesk getCashDesk() {
         return cashDesk;
     }

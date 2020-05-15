@@ -123,21 +123,22 @@ public class CanteenSimulation_2 {
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
-                array int[] tepakken = getRandomArray(articleArmount, 0, AANTAL_ARTIKELEN-1);
+                int[] tepakken = getRandomArray(articleArmount, 0, AANTAL_ARTIKELEN-1);
 
                 // vind de artikelnamen op basis van
                 // de indexen hierboven
                 String[] artikelen = giveArticleNames(tepakken);
 
-                String[] articlenames = {"Test1", "Test2"};
-                tray.addTo(new Article("Test1", 12.50F));
-                tray.addTo(new Article("Test2", 12.50F));
+                for (int k = 0; k < artikelen.length; k++)
+                {
+                    tray.addTo(canteenSelection.getArticle(artikelen[k]));
+                }
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
 
 
-                canteen.loopPakSluitAan(tray, articlenames);
+                canteen.loopPakSluitAan(tray, artikelen);
             }
 
             // verwerk rij voor de kassa

@@ -5,5 +5,6 @@ public class Cash extends PayMethod {
      */
     public boolean pay(double amountToPay) {
         // method body omitted
+        return false;
     }
 }

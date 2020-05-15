@@ -16,6 +16,7 @@ public class Tray {
 
     public Tray(Person customer) {
         this.customer = customer;
+        articles = new Stack<>();
     }
 
 
@@ -50,11 +51,7 @@ public class Tray {
      * @return Amount of articles
      */
     public int getArticleAmount() {
-        int amount = 0;
-        for (Article article: articles) {
-                amount++;
-        }
-        return amount;
+        return articles.size();
     }
 
     /**

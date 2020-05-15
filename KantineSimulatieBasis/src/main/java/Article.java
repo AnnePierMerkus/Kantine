@@ -7,7 +7,7 @@ public class Article {
     /**
      * The price of the article
      */
-    float price;
+    double price;
 
     /**
      * The name of the arciel
@@ -28,7 +28,7 @@ public class Article {
      * @param name to be given to the article
      * @param price to be given to the article
      */
-    public Article(String name, float price) {
+    public Article(String name, double price) {
         this.name = name;
         this.price = price;
     }
@@ -52,7 +52,7 @@ public class Article {
      *
      * @return The price of the article
      */
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -70,7 +70,7 @@ public class Article {
      *
      * @param price to be given to the article
      */
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -11,9 +11,7 @@ public class CheckoutLine {
      * Constructor
      */
     public CheckoutLine() {
-        customerLine = new LinkedList<Tray>() {
-        };
-        // method body omitted
+        customerLine = new LinkedList<Tray>();
     }
 
     /**
