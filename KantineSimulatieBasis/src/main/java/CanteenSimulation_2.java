@@ -2,6 +2,8 @@ package main.java;
 
 import java.util.*;
 
+import static main.java.CanteenSimulation_1.DAGEN;
+
 public class CanteenSimulation_2 {
 
     // kantine
@@ -106,37 +108,63 @@ public class CanteenSimulation_2 {
         for(int i = 0; i < days; i++) {
 
             // bedenk hoeveel personen vandaag binnen lopen
-            int personAmount = ... ;
+            int personAmount = getRandomValue(4, 10);
 
             // laat de personen maar komen...
             for (int j = 0; j < personAmount; j++) {
 
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
-                int articleArmount = ... ;
+                int articleArmount = getRandomValue(2, 6);
+                Person customer = new Person("123456789", "Anne Pier", "Merkus", new Date(10, 7, 1998), 'M');
+                Tray tray = new Tray(customer);
+
+
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
-                array int[] tepakken = getRandomArray(
-                    articleArmount, 0, AANTAL_ARTIKELEN-1);
+                array int[] tepakken = getRandomArray(articleArmount, 0, AANTAL_ARTIKELEN-1);
 
                 // vind de artikelnamen op basis van
                 // de indexen hierboven
                 String[] artikelen = giveArticleNames(tepakken);
 
+                String[] articlenames = {"Test1", "Test2"};
+                tray.addTo(new Article("Test1", 12.50F));
+                tray.addTo(new Article("Test2", 12.50F));
+
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
 
+
+                canteen.loopPakSluitAan(tray, articlenames);
             }
 
             // verwerk rij voor de kassa
+            canteen.handleCheckoutLine();
 
             // druk de dagtotalen af en hoeveel personen binnen
-
             // zijn gekomen
+            CashDesk cashDesk = canteen.getCashDesk();
+            System.out.println("Dagtotaal van vandaag: " + cashDesk.getMoneyAmountInCashDesk());
+            System.out.println("Aantal personen vandaag: " + personAmount);
 
             // reset de kassa voor de volgende dag
-
+           cashDesk.resetCashDesk();
         }
     }
+
+    public static void main(String[] args) {
+        int days;
+
+        if (args.length == 0) {
+            days = DAGEN;
+        } else {
+            days = Integer.parseInt(args[0]);
+        }
+        CanteenSimulation_2 canteenSimulation2 = new CanteenSimulation_2();
+        canteenSimulation2.simuleer(days);
+    }
+
+
 }
