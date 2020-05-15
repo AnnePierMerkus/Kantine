@@ -28,7 +28,14 @@ public class CanteenSimulation_1 {
 
             // for lus voor personen
             for (int j = 0; j < 10 + i; j++) {
-                canteen.loopPakSluitAan();
+                Person customer = new Person("123456789", "Anne Pier", "Merkus", new Date(10, 7, 1998), 'M');
+                Tray tray = new Tray(customer);
+
+                String[] articlenames = {"Test1", "Test2"};
+                tray.addTo(new Article("Test1", 12.50F));
+                tray.addTo(new Article("Test2", 12.50F));
+
+                canteen.loopPakSluitAan(tray, articlenames);
                 // kantine.(...);
             }
 
