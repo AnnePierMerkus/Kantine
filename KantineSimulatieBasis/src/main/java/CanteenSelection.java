@@ -26,6 +26,8 @@ public class CanteenSelection {
             prices.put(articleName[i], price[i]);
             selection.put(articleName[i], articles);
         }
+
+        System.out.println(startingStock.get("Coffee"));
     }
 
     private void vulVoorraadAan(String productName) {

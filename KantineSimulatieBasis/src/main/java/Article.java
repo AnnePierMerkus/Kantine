@@ -10,7 +10,7 @@ public class Article {
     double price;
 
     /**
-     * The name of the arciel
+     * The name of the article
      */
     String name;
 

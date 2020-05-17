@@ -26,8 +26,8 @@ public class CanteenSimulation_2 {
     private static double[] articlePrices = new double[] {1.50, 2.10, 1.65, 1.65};
 
     // minimum en maximum aantal artikelen per soort
-    private static final int MIN_ARTIKELEN_PER_SOORT = 10000;
-    private static final int MAX_ARTIKELEN_PER_SOORT = 20000;
+    private static final int MIN_ARTIKELEN_PER_SOORT = 10;
+    private static final int MAX_ARTIKELEN_PER_SOORT = 20;
 
     // minimum en maximum aantal personen per dag
     private static final int MIN_PERSONEN_PER_DAG = 50;
@@ -42,6 +42,7 @@ public class CanteenSimulation_2 {
      *
      */
     public CanteenSimulation_2() {
+        System.out.println(Administration.calculateAverageRevenue(new double[] {567.70, 498.25, 458.90}));
         canteen = new Canteen();
         random = new Random();
         int[] amount =
