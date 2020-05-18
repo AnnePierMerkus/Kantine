@@ -1,6 +1,6 @@
 package main.java;
 
-public class CanteenSimulation_1 {
+public class KantineSimulatie_1 {
 
     private Kantine kantine;
 
@@ -9,27 +9,28 @@ public class CanteenSimulation_1 {
     /**
      * Constructor
      */
-    public CanteenSimulation_1() {
+    public KantineSimulatie_1() {
         kantine = new Kantine();
     }
 
     /**
-     * This method simulates an amount of days passing in the canteen
+     * Deze methode simuleert een aantal dagen in het
+     * verloop van de kantine
      *
-     * @param days
+     * @param dagen
      */
-    public void simulate(int days) {
+    public void simulate(int dagen) {
 
         // herhaal voor elke dag
-        for (int i = 0; i < days; i++) {
+        for (int i = 0; i < dagen; i++) {
 
             // per dag nu even vast 10 + i personen naar binnen
             // laten gaan, wordt volgende week veranderd...
 
             // for lus voor personen
             for (int j = 0; j < 10 + i; j++) {
-                Persoon customer = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
-                Dienblad dienblad = new Dienblad(customer);
+                Persoon klant = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
+                Dienblad dienblad = new Dienblad(klant);
 
                 String[] articlenames = {"Test1", "Test2"};
                 dienblad.addTo(new Artikel("Test1", 12.50F));
@@ -42,13 +43,13 @@ public class CanteenSimulation_1 {
             // verwerk rij voor de kassa
 
             kantine.verwerkRijVoorKassa();
-            Kassa cashdesk = kantine.getKassa();
+            Kassa kassa = kantine.getKassa();
             // toon dagtotalen (artikelen en geld in kassa)
-            System.out.println("dag " + days + " " + cashdesk.getAantalArtikelen() + " artikelen.");
-            System.out.println("dag " + days + " " + cashdesk.getHoeveelheidGeldInKassa() + " euro in de kassa.");
+            System.out.println("dag " + dagen + " " + kassa.getAantalArtikelen() + " artikelen.");
+            System.out.println("dag " + dagen + " " + kassa.getHoeveelheidGeldInKassa() + " euro in de kassa.");
 
             // reset de kassa voor de volgende dag
-            cashdesk.resetKassa();
+            kassa.resetKassa();
         }
     }
 
@@ -56,14 +57,14 @@ public class CanteenSimulation_1 {
      * Start a simulation
      */
     public static void main(String[] args) {
-        int days;
+        int dagen;
 
         if (args.length == 0) {
-            days = DAGEN;
+            dagen = DAGEN;
         } else {
-            days = Integer.parseInt(args[0]);
+            dagen = Integer.parseInt(args[0]);
         }
-        CanteenSimulation_1 canteenSimulation1 = new CanteenSimulation_1();
-        canteenSimulation1.simulate(days);
+        KantineSimulatie_1 kantineSimulatie1 = new KantineSimulatie_1();
+        kantineSimulatie1.simulate(dagen);
     }
 }
