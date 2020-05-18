@@ -1,6 +1,6 @@
 package main.java;
 
-public class DebitCard extends PayMethod {
+public class DebitCard extends BetaalWijze {
 
 
 
@@ -18,7 +18,7 @@ public class DebitCard extends PayMethod {
     /**
      * Method to finalize payment
      */
-    public boolean pay(double amountToPay) {
+    public boolean betaal(double tebetalen) {
         // method body omitted
         return false;
     }

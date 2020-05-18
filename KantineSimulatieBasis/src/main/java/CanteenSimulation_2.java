@@ -7,10 +7,10 @@ import static main.java.CanteenSimulation_1.DAGEN;
 public class CanteenSimulation_2 {
 
     // kantine
-    private Canteen canteen;
+    private Kantine kantine;
 
     // kantineaanbod
-    private CanteenSelection canteenSelection;
+    private KantineAanbod kantineAanbod;
 
     // random generator
     private Random random;
@@ -42,14 +42,14 @@ public class CanteenSimulation_2 {
      *
      */
     public CanteenSimulation_2() {
-        System.out.println(Administration.calculateAverageRevenue(new double[] {567.70, 498.25, 458.90}));
-        canteen = new Canteen();
+        System.out.println(Administratie.berekenGemiddeldeOmzet(new double[] {567.70, 498.25, 458.90}));
+        kantine = new Kantine();
         random = new Random();
         int[] amount =
                 getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
-        canteenSelection = new CanteenSelection(articleNames, articlePrices, amount);
+        kantineAanbod = new KantineAanbod(articleNames, articlePrices, amount);
 
-        canteen.setCanteenSelection(canteenSelection);
+        kantine.setKantineAanbod(kantineAanbod);
     }
 
     /**
@@ -100,13 +100,14 @@ public class CanteenSimulation_2 {
     }
 
     /**
-     * This method simulates an amount of days passing in the canteen
+     * Deze methode simuleert een aantal dagen
+     * in het verloop van de kantine
      *
-     * @param days
+     * @param dagen
      */
-    public void simuleer(int days) {
-        // for lus voor days
-        for(int i = 0; i < days; i++) {
+    public void simuleer(int dagen) {
+        // for lus voor dagen
+        for(int i = 0; i < dagen; i++) {
 
             // bedenk hoeveel personen vandaag binnen lopen
             int personAmount = getRandomValue(4, 10);
@@ -117,8 +118,8 @@ public class CanteenSimulation_2 {
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
                 int articleArmount = getRandomValue(2, 6);
-                Person customer = new Person("123456789", "Anne Pier", "Merkus", new Date(10, 7, 1998), 'M');
-                Tray tray = new Tray(customer);
+                Persoon customer = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
+                Dienblad dienblad = new Dienblad(customer);
 
 
 
@@ -132,27 +133,27 @@ public class CanteenSimulation_2 {
 
                 for (int k = 0; k < artikelen.length; k++)
                 {
-                    tray.addTo(canteenSelection.getArticle(artikelen[k]));
+                    dienblad.addTo(kantineAanbod.getArtikel(artikelen[k]));
                 }
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
 
 
-                canteen.loopPakSluitAan(tray, artikelen);
+                kantine.loopPakSluitAan(dienblad, artikelen);
             }
 
             // verwerk rij voor de kassa
-            canteen.handleCheckoutLine();
+            kantine.verwerkRijVoorKassa();
 
             // druk de dagtotalen af en hoeveel personen binnen
             // zijn gekomen
-            CashDesk cashDesk = canteen.getCashDesk();
-            System.out.println("Dagtotaal van vandaag: " + cashDesk.getMoneyAmountInCashDesk());
+            Kassa kassa = kantine.getKassa();
+            System.out.println("Dagtotaal van vandaag: " + kassa.getHoeveelheidGeldInKassa());
             System.out.println("Aantal personen vandaag: " + personAmount);
 
             // reset de kassa voor de volgende dag
-           cashDesk.resetCashDesk();
+           kassa.resetKassa();
         }
     }
 

@@ -2,7 +2,7 @@ package main.java;
 
 public class CanteenSimulation_1 {
 
-    private Canteen canteen;
+    private Kantine kantine;
 
     public static final int DAGEN = 7;
 
@@ -10,7 +10,7 @@ public class CanteenSimulation_1 {
      * Constructor
      */
     public CanteenSimulation_1() {
-        canteen = new Canteen();
+        kantine = new Kantine();
     }
 
     /**
@@ -28,27 +28,27 @@ public class CanteenSimulation_1 {
 
             // for lus voor personen
             for (int j = 0; j < 10 + i; j++) {
-                Person customer = new Person("123456789", "Anne Pier", "Merkus", new Date(10, 7, 1998), 'M');
-                Tray tray = new Tray(customer);
+                Persoon customer = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
+                Dienblad dienblad = new Dienblad(customer);
 
                 String[] articlenames = {"Test1", "Test2"};
-                tray.addTo(new Article("Test1", 12.50F));
-                tray.addTo(new Article("Test2", 12.50F));
+                dienblad.addTo(new Artikel("Test1", 12.50F));
+                dienblad.addTo(new Artikel("Test2", 12.50F));
 
-                canteen.loopPakSluitAan(tray, articlenames);
+                kantine.loopPakSluitAan(dienblad, articlenames);
                 // kantine.(...);
             }
 
             // verwerk rij voor de kassa
 
-            canteen.handleCheckoutLine();
-            CashDesk cashdesk = canteen.getCashDesk();
+            kantine.verwerkRijVoorKassa();
+            Kassa cashdesk = kantine.getKassa();
             // toon dagtotalen (artikelen en geld in kassa)
-            System.out.println("dag " + days + cashdesk.getArticleAmount() + " artikelen.");
-            System.out.println("dag " + days + cashdesk.getMoneyAmountInCashDesk() + " euro in de kassa.");
+            System.out.println("dag " + days + " " + cashdesk.getAantalArtikelen() + " artikelen.");
+            System.out.println("dag " + days + " " + cashdesk.getHoeveelheidGeldInKassa() + " euro in de kassa.");
 
             // reset de kassa voor de volgende dag
-            cashdesk.resetCashDesk();
+            cashdesk.resetKassa();
         }
     }
 
