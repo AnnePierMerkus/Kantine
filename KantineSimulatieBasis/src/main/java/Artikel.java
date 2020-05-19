@@ -15,11 +15,9 @@ public class Artikel {
     String naam;
 
     /**
-     * Lege constructor voor de Klasse Artikel.
+     * Constructor die standaard waardes geeft aan de variabelen.
      */
     public Artikel(){
-        prijs = 0;
-        naam = "Unknown";
     }
 
     /**
@@ -35,21 +33,22 @@ public class Artikel {
     }
 
     /**
-     * Creates a stringbuilder creating a string with the name and price of the article.
-     * @return A string with the name and price of the article
+     * Maakt een StringBuilder met de naam en prijs variabele.
+     * @return Een String met de naam en de prijs van het artikel
      */
     public String toString()
     {
         StringBuilder str = new StringBuilder()
+                .append("Naam: ")
                 .append(naam)
-                .append(", ")
+                .append("\nPrijs: ")
                 .append(prijs);
 
         return str.toString();
     }
 
     /**
-     * Getter voor prijs
+     * Haalt de prijs van het artikel op.
      *
      * @return De prijs van het artikel
      */
@@ -58,7 +57,7 @@ public class Artikel {
     }
 
     /**
-     * Getter voor Naam
+     * Haalt de naam van het artikel op.
      *
      * @return De naam van het artikel
      */
@@ -67,7 +66,7 @@ public class Artikel {
     }
 
     /**
-     * Setter voor Prijs
+     * Veranderd de prijs van het artikel.
      *
      * @param prijs die aan het artikel word toegewezen
      */
@@ -76,7 +75,7 @@ public class Artikel {
     }
 
     /**
-     * Setter voor Naam
+     * Veranderd de naam van het artikel.
      *
      * @param naam die aan het artikel word toegewezen
      */

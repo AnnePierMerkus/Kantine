@@ -54,112 +54,115 @@ public class Datum {
 			this.dag = dag;
 			this.maand = maand;
 			this.jaar = jaar;
+			System.out.print("Geldige datum");
+		}
+		else
+		{
+			System.out.print("Ongeldige datum");
 		}
 	}
 
 	/**
-	 * Gets dag.
+	 * Controleert of de gegeven datum ook daadwerkelijk bestaat.
 	 *
-	 * @return de dag
-	 */
-	public int getDag() {
-		return dag;
-	}
-
-	/**
-	 * Gets maand.
-	 *
-	 * @return de maand
-	 */
-	public int getMaand() {
-		return maand;
-	}
-
-	/**
-	 * Gets year.
-	 *
-	 * @return de year
-	 */
-	public int getJaar() {
-		return jaar;
-	}
-
-	/**
-	 * Sets dag.
-	 *
-	 * @param dag de dag
-	 */
-	public void setDag(int dag) {
-		this.dag = dag;
-	}
-
-	/**
-	 * Sets maand.
-	 *
-	 * @param maand de maand
-	 */
-	public void setMaand(int maand) {
-		this.maand = this.maand;
-	}
-
-	/**
-	 * Sets jaar.
-	 *
-	 * @param jaar het jaar
-	 */
-	public void setJaar(int jaar) {
-		this.jaar = this.jaar;
-	}
-
-	/**
-	 * Bestaat datum boolean.
-	 *
-	 * @param day    De dag
-	 * @param month  De maand
-	 * @param year   Het Jaar
-	 * @return de boolean
+	 * @param day    De gegeven dag om te controleren.
+	 * @param month  De gegeven maand om te controleren.
+	 * @param year   Het gegeven jaar om te controleren.
+	 * @return als de datum bestaat true, anders false.
 	 */
 	public boolean bestaatDatum(int day, int month, int year)
 	{
 		if (day >= 1 && day <= 31)
 		{
-			if (month  >= 1 || month <= 12)
-			{
-				if (month == 2)
-				{
-					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-					{
-						if (day > 29)
-						{
+			switch (month) {
+				case 2:
+					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+						if (day > 29) {
 							return false;
 						}
 					}
-					else if (day > 28)
-					{
+					else if (day > 28) {
 						return false;
 					}
-				}
-				else if (Arrays.asList(4, 6, 9, 11).contains(month))
-				{
-					if (day > 30)
-					{
-						return false;
-					}
-				}
+					break;
 
-				if (year >= 1900 || year <= 2100)
-				{
-					return true;
-				}
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					if (day > 30) {
+						return false;
+					}
+					break;
+
+				default:
+					if (month > 12 || month < 1)
+						return false;
+					break;
 			}
+
+			return year >= 1900 && year <= 2100;
 		}
 
 		return false;
 	}
 
 	/**
-	 * Getter voor String view of datum
-	 * Getter for String view of date
+	 * Haalt de geboortedag op.
+	 *
+	 * @return de dag waarop de persoon geboren is.
+	 */
+	public int getDag() {
+		return dag;
+	}
+
+	/**
+	 * Haalt de geboortemaand op.
+	 *
+	 * @return de maand waarin de persoon geboren is.
+	 */
+	public int getMaand() {
+		return maand;
+	}
+
+	/**
+	 * Haalt het geboortejaar op.
+	 *
+	 * @return het jaar waarin de persoon geboren is.
+	 */
+	public int getJaar() {
+		return jaar;
+	}
+
+	/**
+	 * Veranderd de geboortedag van de persoon.
+	 *
+	 * @param dag geeft de nieuwe dag die ingesteld moet worden als geboortemdag.
+	 */
+	public void setDag(int dag) {
+		this.dag = dag;
+	}
+
+	/**
+	 * Veranderd de geboortemaand van de persoon.
+	 *
+	 * @param maand geeft de nieuwe maand die ingesteld moet worden als geboortemaand.
+	 */
+	public void setMaand(int maand) {
+		this.maand = maand;
+	}
+
+	/**
+	 * Veranderd het geboortejaar van de persoon.
+	 *
+	 * @param jaar geeft het nieuwe jaar die ingesteld moet worden als geboortejaar.
+	 */
+	public void setJaar(int jaar) {
+		this.jaar = jaar;
+	}
+
+	/**
+	 * Getter voor String weergave van datum
 	 *
 	 * @return geboortedatum
 	 */

@@ -2,13 +2,23 @@ package main.java;
 
 import java.util.Iterator;
 
+/**
+ * Kassa.java is de klasse waarin alle afgerekende artikelen en de prijs voor die artikelen wordt bijgehouden.
+ */
 public class Kassa {
+    /**
+     * Aantal artikelen dat de kassa is binnengekomen op een dag.
+     */
     int aantalArtikelen;
-    int geldInKassa;
+
+    /**
+     * Geld dat in de kassa is gekomen op een dag.
+     */
+    double geldInKassa;
 
 
     /**
-     * Constructor
+     * Constructor voor de klasse Kassa die de variabelen op 0 zet.
      */
     public Kassa(KassaRij kassaRij) {
         aantalArtikelen = 0;
@@ -23,6 +33,11 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
+        for (Artikel artikel: klant.getArtikelen()) {
+            geldInKassa += artikel.getPrijs();
+            aantalArtikelen++;
+        }
+        /* TODO WEEK 2
         Iterator<Artikel> it = klant.getArtikelenIter();
         int totaal = 0;
         int klantArtikelenAantal = 0;
@@ -34,6 +49,8 @@ public class Kassa {
 
         geldInKassa += totaal;
         aantalArtikelen += klantArtikelenAantal;
+
+         */
     }
 
     /**
@@ -58,10 +75,8 @@ public class Kassa {
 
 
     /**
-     * reset de waarden van het aantal gepasseerde artikelen en de totale hoeveelheid geld in de
-     * kassa.
+     * reset de waarden van het aantal gepasseerde artikelen en de totale hoeveelheid geld in de kassa.
      */
-
     public void resetKassa() {
         aantalArtikelen = 0;
         geldInKassa = 0;
