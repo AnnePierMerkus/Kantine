@@ -1,180 +1,190 @@
 package main.java;
 
 /**
- * The type Person.
+ * Persoon.java in deze klas worden personen opgeslagen, met hun BSN (Burger Service Nummer), voornaam, achternaam, geboortedatum en geslacht.
  */
 public class Persoon {
     /**
-     * De Burger service number.
+     * Het Burger service nummer van de persoon.
      */
-    String burgerServiceNumber;
-    /**
-     * De voornaam.
-     */
-    String voornaam;
-    /**
-     * De achternaam.
-     */
-    String achternaam;
-    /**
-     * De geboortedatum.
-     */
-    Datum geboorteDatum;
-    /**
-     * De Gender.
-     */
-    char gender;
+    String burgerServiceNummer;
 
     /**
-     * Instantiates a new Person.
-     *
-     * @param burgerServiceNumber De burger service number
-     * @param voornaam            De voornaam
-     * @param achternaam          De achternaam
-     * @param geboorteDatum       De geboortedatum
-     * @param gender              De gender
+     * De voornaam van de persoon.
      */
-    public Persoon(String burgerServiceNumber, String voornaam, String achternaam, Datum geboorteDatum, char gender)
+    String voornaam;
+
+    /**
+     * De achternaam van de persoon.
+     */
+    String achternaam;
+
+    /**
+     * De geboortedatum van de persoon.
+     */
+    Datum geboorteDatum;
+
+    /**
+     * Het geslacht van de persoon.
+     */
+    char geslacht;
+
+    /**
+     * Maakt een nieuwe instantie van de klasse persoon en zet de gegeven waardes in de variabelen.
+     *
+     * @param burgerServiceNummer Het Burger Service Nummer die aan de persoon wordt gegeven.
+     * @param voornaam            De voornaam die aan de persoon wordt gegeven.
+     * @param achternaam          De achternaam die aan de persoon wordt gegeven.
+     * @param geboorteDatum       De geboortedatum die aan de persoon wordt gegeven.
+     * @param geslacht            Het geslacht dat aan de persoon wordt gegeven.
+     */
+    public Persoon(String burgerServiceNummer, String voornaam, String achternaam, Datum geboorteDatum, char geslacht)
     {
-        setBurgerServiceNumber(burgerServiceNumber);
+        setBurgerServiceNumber(burgerServiceNummer);
         setVoornaam(voornaam);
         setAchternaam(achternaam);
         setGeboorteDatum(geboorteDatum);
-        setGender(gender);
+        setGender(geslacht);
     }
 
     /**
-     * Instantiates a new Person.
+     * Maakt een nieuwe instantie van de klasse persoon en neemt niet voor alle variabelen een waarde mee.
+     * Dit is indien een persoon zijn geboortedatum/geslacht anoniem wil houden.
      *
-     * @param burgerServiceNumber De burger service number
-     * @param voornaam            De voornaam
-     * @param achternaam          De achternaam
+     * @param burgerServiceNummer Het Burger Service Nummer die aan de persoon wordt gegeven.
+     * @param voornaam            De voornaam die aan de persoon wordt gegeven.
+     * @param achternaam          De achternaam die aan de persoon wordt gegeven.
      */
-    public Persoon(String burgerServiceNumber, String voornaam, String achternaam)
+    public Persoon(String burgerServiceNummer, String voornaam, String achternaam)
     {
-        this(burgerServiceNumber, voornaam, achternaam, new Datum(), 'p');
+        this(burgerServiceNummer, voornaam, achternaam, new Datum(), 'o');
     }
 
+    /**
+     *  Maakt een StringBuilder met alle informatie van de persoon erin.
+     *
+     * @return Een String met alle informatie van de persoon.
+     */
     public String toString()
     {
         StringBuilder str = new StringBuilder()
-                .append(burgerServiceNumber)
-                .append(", ")
+                .append("Burger Service Nummer: ")
+                .append(burgerServiceNummer)
+                .append("\nVoornaam: ")
                 .append(voornaam)
-                .append(", ")
+                .append("\nAchternaam: ")
                 .append(achternaam)
-                .append(", ")
+                .append("\nGeboortedatum: ")
                 .append(getGeboorteDatum())
-                .append(", ")
-                .append(gender);
+                .append("\nGeslacht: ")
+                .append(getGeslacht());
 
         return str.toString();
     }
 
     /**
-     * Gets burger service number.
+     * Haalt het  Burger Service Nummer van de persoon op.
      *
-     * @return de burger service number
+     * @return het Burger Service Nummer van de persoon.
      */
-    public String getBurgerServiceNumber() {
-        return burgerServiceNumber;
+    public String getBurgerServiceNummer() {
+        return burgerServiceNummer;
     }
 
     /**
-     * Gets voornaam
+     * Haalt de voornaam van de persoon op.
      *
-     * @return de voornaam
+     * @return de voornaam van de persoon.
      */
     public String getVoornaam() {
         return voornaam;
     }
 
     /**
-     * Gets achternaam
+     * Haalt de achternaam van de persoon op.
      *
-     * @return de achternaam
+     * @return de achternaam van de persoon.
      */
     public String getAchternaam() {
         return achternaam;
     }
 
     /**
-     * Gets geboortedatum
+     * Haalt de geboortedatum van de persoon op.
      *
-     * @return de geboortedatum
+     * @return de geboortedatum van de persoon.
      */
     public String getGeboorteDatum() {
         return geboorteDatum.getDatumAsString();
     }
 
     /**
-     * Gets gender.
+     * Zet de character van geslacht om naar een string.
      *
-     * @return de gender
+     * @return het geslacht van de persoon in een String vorm.
      */
-    public String getGender() {
-        if (Character.toLowerCase(gender) == 'm')
+    public String getGeslacht() {
+        switch (geslacht)
         {
-            return "Man";
-        }
-        else if (Character.toLowerCase(gender) == 'v')
-        {
-            return "Vrouw";
-        }
-        else
-        {
-            return "Onbekend";
+            case 'm':
+                return "Man";
+            case 'v':
+                return "Vrouw";
+            default:
+                return "Onbekend";
         }
     }
 
     /**
-     * Sets burger service number.
+     * Veranderd het Burger Service Nummer van de persoon.
      *
-     * @param burgerServiceNumber de burger service number
+     * @param burgerServiceNummer het Burger Service Nummer die de persoon moet krijgen.
      */
-    public void setBurgerServiceNumber(String burgerServiceNumber) {
-        this.burgerServiceNumber = burgerServiceNumber;
+    public void setBurgerServiceNumber(String burgerServiceNummer) {
+        this.burgerServiceNummer = burgerServiceNummer;
     }
 
     /**
-     * Sets voornaam.
+     * Veranderd de voornaam van de persoon.
      *
-     * @param voornaam de voornaam
+     * @param voornaam de voornaam die de persoon moet krijgen.
      */
     public void setVoornaam(String voornaam) {
         this.voornaam = voornaam;
     }
 
     /**
-     * Sets achternaam.
+     * Veranderd de achternaam van de persoon.
      *
-     * @param achternaam de achternaam
+     * @param achternaam de achternaam die de persoon moet krijgen.
      */
     public void setAchternaam(String achternaam) {
         this.achternaam = achternaam;
     }
 
     /**
-     * Sets geboortedatum
+     * Veranderd de geboortedatum van de persoon.
      *
-     * @param geboorteDatum de geboortedatum
+     * @param geboorteDatum  de geboortedatum die de persoon moet krijgen.
      */
     public void setGeboorteDatum(Datum geboorteDatum) {
         this.geboorteDatum = geboorteDatum;
     }
 
     /**
-     * Sets gender.
+     * Controleert of het gegeven geslacht bestaat, zo niet wordt deze op onbekend gezet.
      *
-     * @param gender de gender
+     * @param geslacht het geslacht van de persoon
      */
-    public void setGender(char gender) {
-        if (Character.toLowerCase(gender) == 'm' || Character.toLowerCase(gender) == 'v') {
-            this.gender = gender;
+    public void setGender(char geslacht) {
+        geslacht = Character.toLowerCase(geslacht);
+
+        if (geslacht == 'm' || geslacht == 'v') {
+            this.geslacht = geslacht;
         }
         else
         {
-            this.gender = 'o';
+            this.geslacht = 'o';
         }
     }
 }

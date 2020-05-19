@@ -133,7 +133,7 @@ public class KantineSimulatie_2 {
 
                 for (int k = 0; k < artikelen.length; k++)
                 {
-                    dienblad.addTo(kantineAanbod.getArtikel(artikelen[k]));
+                    dienblad.voegToe(kantineAanbod.getArtikel(artikelen[k]));
                 }
 
                 // loop de kantine binnen, pak de gewenste
@@ -158,7 +158,7 @@ public class KantineSimulatie_2 {
     }
 
     public static void main(String[] args) {
-        int dagen;
+        /*int dagen;
 
         if (args.length == 0) {
             dagen = DAGEN;
@@ -167,6 +167,10 @@ public class KantineSimulatie_2 {
         }
         KantineSimulatie_2 kantineSimulatie2 = new KantineSimulatie_2();
         kantineSimulatie2.simuleer(dagen);
+
+         */
+
+        Datum datum = new Datum(29, 12, 2000);
     }
 
 
