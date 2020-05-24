@@ -17,7 +17,7 @@ public class KantineSimulatie_1 {
      * Deze methode simuleert een aantal dagen in het
      * verloop van de kantine
      *
-     * @param dagen
+     * @param dagen het aantal dagen voor het simuleren.
      */
     public void simulate(int dagen) {
 
@@ -29,20 +29,14 @@ public class KantineSimulatie_1 {
 
             // for lus voor personen
             for (int j = 0; j < 10 + i; j++) {
-                Persoon klant = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
-                Dienblad dienblad = new Dienblad(klant);
-
-                String[] articlenames = {"Test1", "Test2"};
-                dienblad.voegToe(new Artikel("Test1", 12.50F));
-                dienblad.voegToe(new Artikel("Test2", 12.50F));
-
-                kantine.loopPakSluitAan(dienblad, articlenames);
-                // kantine.(...);
+                // Gecomment na verwijderde code.
+                //kantine.loopPakSluitAan();
             }
 
             // verwerk rij voor de kassa
 
             kantine.verwerkRijVoorKassa();
+
             Kassa kassa = kantine.getKassa();
             // toon dagtotalen (artikelen en geld in kassa)
             System.out.println("dag " + dagen + " " + kassa.getAantalArtikelen() + " artikelen.");

@@ -9,11 +9,10 @@ import java.util.Iterator;
  */
 public class Dienblad {
 
-    //private Stack<Artikel> artikelen;
     /**
      * Een ArrayList met artikelen die aan het dienblad worden toegevoegd en later afgerekend bij de kassa.
      */
-    private ArrayList<Artikel> artikelen;
+    private Stack<Artikel> artikelen;
 
     /**
      * De klant die dit dienblad gebruikt om te winkelen.
@@ -25,7 +24,7 @@ public class Dienblad {
      * Constructor zonder parameters die artikelen ArrayList initialiseerd.
      */
     public Dienblad() {
-        artikelen = new ArrayList<>();
+        artikelen = new Stack<>();
     }
 
     /**
@@ -34,7 +33,7 @@ public class Dienblad {
      */
     public Dienblad(Persoon klant) {
         this.klant = klant;
-        artikelen = new ArrayList<>();
+        artikelen = new Stack<>();
     }
 
 
@@ -60,30 +59,7 @@ public class Dienblad {
      * @param artikel artikel dat aan het dienblad wordt toegevoegd.
      */
     public void voegToe(Artikel artikel) {
-        artikelen.add(artikel);
-    }
-
-    /**
-     * Methode om aantal artikelen op dienblad te tellen
-     *
-     * @return Het aantal artikelen op het dienblad
-     */
-    public int getAantalArtikelen() {
-        return artikelen.size();
-    }
-
-    /**
-     * Methode om de totaalprijs van de artikelen op dienblad uit te rekenen
-     *
-     * @return De totaalprijs van de artikelen op het dienblad.
-     */
-    public double getTotaalPrijs() {
-        int prijs = 0;
-        for (Artikel artikel : artikelen) {
-            prijs += artikel.getPrijs();
-        }
-
-        return prijs;
+        artikelen.push(artikel);
     }
 
     /**
@@ -91,7 +67,7 @@ public class Dienblad {
      *
      * @return De lijst met artikelen op het dienblad.
      */
-    public ArrayList<Artikel> getArtikelen() {
+    public Stack<Artikel> getArtikelen() {
         return artikelen;
     }
 

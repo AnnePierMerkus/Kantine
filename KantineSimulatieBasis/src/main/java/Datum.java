@@ -54,11 +54,11 @@ public class Datum {
 			this.dag = dag;
 			this.maand = maand;
 			this.jaar = jaar;
-			System.out.print("Geldige datum");
+			//System.out.print("Geldige datum");
 		}
 		else
 		{
-			System.out.print("Ongeldige datum");
+			//System.out.print("Ongeldige datum");
 		}
 	}
 
