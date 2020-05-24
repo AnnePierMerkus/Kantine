@@ -1,5 +1,6 @@
 package main.java;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import static main.java.KantineSimulatie_1.DAGEN;
@@ -23,7 +24,7 @@ public class KantineSimulatie_2 {
             new String[] {"Coffee", "PB sandwich", "Cheese sandwich", "Apple juice"};
 
     // prices
-    private static double[] artikelPrijzen = new double[] {1.50, 2.10, 1.65, 1.65};
+    private static BigDecimal[] artikelPrijzen = new BigDecimal[] {new BigDecimal("1.50"), new BigDecimal("2.10"), new BigDecimal("1.65"), new BigDecimal("1.65")};
 
     // minimum en maximum aantal artikelen per soort
     private static final int MIN_ARTIKELEN_PER_SOORT = 10;
@@ -42,7 +43,6 @@ public class KantineSimulatie_2 {
      *
      */
     public KantineSimulatie_2() {
-        System.out.println(Administratie.berekenGemiddeldeOmzet(new double[] {567.70, 498.25, 458.90}));
         kantine = new Kantine();
         random = new Random();
         int[] amount =
@@ -118,10 +118,8 @@ public class KantineSimulatie_2 {
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen = getRandomValue(2, 6);
-                Persoon klant = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
-                Dienblad dienblad = new Dienblad(klant);
-
-
+                Persoon customer = new Persoon(String.valueOf(j), "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
+                Dienblad dienblad = new Dienblad(customer);
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
@@ -131,15 +129,8 @@ public class KantineSimulatie_2 {
                 // de indexen hierboven
                 String[] artikelen = geefArtikelNamen(tepakken);
 
-                for (int k = 0; k < artikelen.length; k++)
-                {
-                    dienblad.voegToe(kantineAanbod.getArtikel(artikelen[k]));
-                }
-
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
-
-
                 kantine.loopPakSluitAan(dienblad, artikelen);
             }
 
@@ -149,8 +140,16 @@ public class KantineSimulatie_2 {
             // druk de dagtotalen af en hoeveel personen binnen
             // zijn gekomen
             Kassa kassa = kantine.getKassa();
-            System.out.println("Dagtotaal van vandaag: " + kassa.getHoeveelheidGeldInKassa());
-            System.out.println("Aantal personen vandaag: " + aantalpersonen);
+            int dag = i + 1;
+
+            StringBuilder str = new StringBuilder()
+                    .append("\nDag: ")
+                    .append(dag)
+                    .append("\nDagtotaal:       ")
+                    .append(kassa.getHoeveelheidGeldInKassa())
+                    .append("\nAantal personen: ")
+                    .append(aantalpersonen);
+            System.out.println(str);
 
             // reset de kassa voor de volgende dag
            kassa.resetKassa();
@@ -158,7 +157,7 @@ public class KantineSimulatie_2 {
     }
 
     public static void main(String[] args) {
-        /*int dagen;
+        int dagen;
 
         if (args.length == 0) {
             dagen = DAGEN;
@@ -167,10 +166,7 @@ public class KantineSimulatie_2 {
         }
         KantineSimulatie_2 kantineSimulatie2 = new KantineSimulatie_2();
         kantineSimulatie2.simuleer(dagen);
-
-         */
-
-        Datum datum = new Datum(29, 12, 2000);
+        //Datum datum = new Datum(29, 2, 2000);
     }
 
 
