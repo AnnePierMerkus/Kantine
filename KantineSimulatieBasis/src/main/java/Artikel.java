@@ -1,5 +1,7 @@
 package main.java;
 
+import java.math.BigDecimal;
+
 /**
  * Article.java is a class in which articles are saved with a given name and price.
  */
@@ -7,7 +9,7 @@ public class Artikel {
     /**
      * De prijs van het artikel
      */
-    double prijs;
+    BigDecimal prijs;
 
     /**
      * De naam van het artikel.
@@ -27,7 +29,7 @@ public class Artikel {
      * @param naam naam die aan het artikel toegewezen word
      * @param prijs prijs die aan het artikel toegewezen word
      */
-    public Artikel(String naam, double prijs) {
+    public Artikel(String naam, BigDecimal prijs) {
         this.naam = naam;
         this.prijs = prijs;
     }
@@ -52,7 +54,7 @@ public class Artikel {
      *
      * @return double De prijs van het artikel
      */
-    public double getPrijs() {
+    public BigDecimal getPrijs() {
         return prijs;
     }
 
@@ -70,7 +72,7 @@ public class Artikel {
      *
      * @param prijs die aan het artikel word toegewezen
      */
-    public void setPrijs(double prijs) {
+    public void setPrijs(BigDecimal prijs) {
         this.prijs = prijs;
     }
 
