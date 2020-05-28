@@ -2,21 +2,20 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class KassaRij {
+    //LinkedList<Dienblad> wachtrij;
 
     /**
      * De wachtrij bij de kassa.
      */
-    LinkedList<Dienblad> wachtrij;
+    ArrayList<Dienblad> wachtrij;
 
     /**
      * Constructor voor kassarij die een nieuwe wachtrij aanmaakt.
      */
     public KassaRij() {
-        wachtrij = new LinkedList<>() {
-        };
+        wachtrij = new ArrayList<>();
     }
 
     /**
@@ -25,7 +24,7 @@ public class KassaRij {
      * @param klant de klant die achteraan de rij sluit.
      */
     public void sluitAchteraan(Dienblad klant) {
-       wachtrij.offerLast(klant);
+       wachtrij.add(klant);
     }
 
     /**
@@ -35,8 +34,7 @@ public class KassaRij {
      * @return Eerste klant in de rij of null als de rij leeg is.
      */
     public Dienblad eerstePersoonInRij() {
-        //System.out.println(wachtrij.get(0).getKlant().getBurgerServiceNummer());
-        return erIsEenRij() ? wachtrij.poll() : null;
+        return erIsEenRij() ? wachtrij.remove(0) : null;
     }
 
     /**
