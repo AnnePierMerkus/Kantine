@@ -1,22 +1,23 @@
 package main.java;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class KantineAanbod {
     // interne opslag voorraad
     private HashMap<String, ArrayList<Artikel>> aanbod;
     private HashMap<String, Integer> startVoorraad;
-    private HashMap<String, Double> prijzen;
+    private HashMap<String, BigDecimal> prijzen;
 
     /**
      * Constructor. Het eerste argument is een lijst met artikelnamen, het tweede argument is
      * eenlijst met prijzen en het derde argument is een lijst met hoeveelheden. Let op: de
      * dimensies van de drie arrays moeten wel gelijk zijn!
      */
-    public KantineAanbod(String[] articleName, double[] price, int[] amount) {
+    public KantineAanbod(String[] articleName, BigDecimal[] price, int[] amount) {
         aanbod = new HashMap<String, ArrayList<Artikel>>();
         startVoorraad = new HashMap<String, Integer>();
-        prijzen = new HashMap<String, Double>();
+        prijzen = new HashMap<String, BigDecimal>();
         for (int i = 0; i < articleName.length; i++) {
             ArrayList<Artikel> artikels = new ArrayList<Artikel>();
             for (int j = 0; j < amount[i]; j++) {
@@ -26,15 +27,13 @@ public class KantineAanbod {
             prijzen.put(articleName[i], price[i]);
             aanbod.put(articleName[i], artikels);
         }
-
-        System.out.println(startVoorraad.get("Koffie"));
     }
 
     private void vulVoorraadAan(String productnaam) {
         ArrayList<Artikel> huidigeVoorraad = aanbod.get(productnaam);
         int startHoeveelheid = startVoorraad.get(productnaam);
         int huidigeHoeveelheid = huidigeVoorraad.size();
-        double prijs = prijzen.get(productnaam);
+        BigDecimal prijs = prijzen.get(productnaam);
         for (int j = huidigeHoeveelheid; j < startHoeveelheid; j++) {
             huidigeVoorraad.add(new Artikel(productnaam, prijs));
         }
@@ -62,8 +61,9 @@ public class KantineAanbod {
         } else {
             Artikel a = stapel.get(0);
             stapel.remove(0);
-            if (stapel.size() <= 10)
+            if (stapel.size() <= 10) {
                 vulVoorraadAan(a.getNaam());
+            }
             return a;
         }
     }

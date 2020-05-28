@@ -1,5 +1,6 @@
 package main.java;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 
 /**
@@ -14,15 +15,14 @@ public class Kassa {
     /**
      * Geld dat in de kassa is gekomen op een dag.
      */
-    double geldInKassa;
+    BigDecimal geldInKassa;
 
 
     /**
      * Constructor voor de klasse Kassa die de variabelen op 0 zet.
      */
     public Kassa(KassaRij kassaRij) {
-        aantalArtikelen = 0;
-        geldInKassa = 0;
+        resetKassa();
     }
 
     /**
@@ -33,24 +33,19 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        for (Artikel artikel: klant.getArtikelen()) {
-            geldInKassa += artikel.getPrijs();
-            aantalArtikelen++;
-        }
-        /* TODO WEEK 2
-        Iterator<Artikel> it = klant.getArtikelenIter();
-        int totaal = 0;
+        BigDecimal totaal = new BigDecimal(0);
         int klantArtikelenAantal = 0;
 
+        Iterator<Artikel> it = klant.getArtikelenIter();
+
         while (it.hasNext()) {
-            totaal += it.next().getPrijs();
+            totaal = totaal.add(it.next().getPrijs());
             klantArtikelenAantal++;
         }
+        //System.out.println(totaal);
 
-        geldInKassa += totaal;
+        geldInKassa = geldInKassa.add(totaal);
         aantalArtikelen += klantArtikelenAantal;
-
-         */
     }
 
     /**
@@ -69,7 +64,7 @@ public class Kassa {
      *
      * @return hoeveelheid geld in de kassa
      */
-    public double getHoeveelheidGeldInKassa() {
+    public BigDecimal getHoeveelheidGeldInKassa() {
         return geldInKassa;
     }
 
@@ -79,6 +74,6 @@ public class Kassa {
      */
     public void resetKassa() {
         aantalArtikelen = 0;
-        geldInKassa = 0;
+        geldInKassa = BigDecimal.ZERO;
     }
 }
