@@ -113,14 +113,14 @@ public class KantineSimulatie_2 {
         for(int i = 0; i < dagen; i++) {
 
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = getRandomValue(4, 10);
+            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
 
             // laat de personen maar komen...
             for (int j = 0; j < aantalpersonen; j++) {
 
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
-                int aantalartikelen = getRandomValue(2, 6);
+                int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MIN_ARTIKELEN_PER_PERSOON);
                 Persoon customer = new Persoon(String.valueOf(j), "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
                 Dienblad dienblad = new Dienblad(customer);
 
