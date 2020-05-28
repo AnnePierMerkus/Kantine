@@ -22,8 +22,7 @@ public class Kassa {
      * Constructor voor de klasse Kassa die de variabelen op 0 zet.
      */
     public Kassa(KassaRij kassaRij) {
-        aantalArtikelen = 0;
-        geldInKassa = BigDecimal.ZERO;
+        resetKassa();
     }
 
     /**
@@ -42,7 +41,6 @@ public class Kassa {
         while (it.hasNext()) {
             totaal = totaal.add(it.next().getPrijs());
             klantArtikelenAantal++;
-
         }
         //System.out.println(totaal);
 

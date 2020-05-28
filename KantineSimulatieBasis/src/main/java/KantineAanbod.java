@@ -27,8 +27,6 @@ public class KantineAanbod {
             prijzen.put(articleName[i], price[i]);
             aanbod.put(articleName[i], artikels);
         }
-
-        System.out.println(startVoorraad.get("Coffee"));
     }
 
     private void vulVoorraadAan(String productnaam) {
@@ -63,8 +61,9 @@ public class KantineAanbod {
         } else {
             Artikel a = stapel.get(0);
             stapel.remove(0);
-            if (stapel.size() <= 10)
+            if (stapel.size() <= 10) {
                 vulVoorraadAan(a.getNaam());
+            }
             return a;
         }
     }

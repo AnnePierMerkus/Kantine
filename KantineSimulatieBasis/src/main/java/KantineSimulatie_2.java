@@ -1,5 +1,7 @@
 package main.java;
 
+import main.java.Test.Week2tests;
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -166,7 +168,13 @@ public class KantineSimulatie_2 {
         }
         KantineSimulatie_2 kantineSimulatie2 = new KantineSimulatie_2();
         kantineSimulatie2.simuleer(dagen);
-        //Datum datum = new Datum(29, 2, 2000);
+
+
+        Week2tests week2 = new Week2tests();
+        //week2.opgave1();
+        //week2.opgave2();
+        //week2.opgave4();
+        //week2.opgave5();
     }
 
 

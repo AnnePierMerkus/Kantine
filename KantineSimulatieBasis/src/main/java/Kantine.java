@@ -1,5 +1,7 @@
 package main.java;
 
+import java.math.BigDecimal;
+
 /**
  * Kantine.java is de klassa waarin de rij van de kassa wordt afgehandled.
  */
@@ -28,6 +30,21 @@ public class Kantine {
     }
 
     /**
+     *
+     */
+    @Deprecated
+    public void loopPakSluitAan() {
+        // method body omitted
+        Persoon klant = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
+        Dienblad dienblad = new Dienblad(klant);
+
+        dienblad.voegToe(new Artikel("Test1", new BigDecimal(12.50F)));
+        dienblad.voegToe(new Artikel("Test2", new BigDecimal(12.50F)));
+
+        kassaRij.sluitAchteraan(dienblad);
+    }
+
+    /**
      * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar gekoppeld. Maak twee
      * Artikelen aan en plaats deze op het dienblad. Tenslotte sluit de Persoon zich aan bij de rij
      * voor de kassa.
@@ -50,6 +67,26 @@ public class Kantine {
         }
     }
 
+    /**
+     * @deprecated vanaf versie 2.3, gebruik getkassa.getHoeveelheidGeldInKassa().
+     * @return
+     */
+    @Deprecated
+    public BigDecimal getHoeveelheidGeldInKassa() {
+        return kassa.getHoeveelheidGeldInKassa();
+    }
+
+    @Deprecated
+    public int getAantalArtikelen()
+    {
+        return kassa.getAantalArtikelen();
+    }
+
+    @Deprecated
+    public void resetKassa()
+    {
+        kassa.resetKassa();
+    }
     /**
      * Haalt de kassa variabele op.
      *

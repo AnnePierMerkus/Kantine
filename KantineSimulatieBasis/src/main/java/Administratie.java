@@ -59,8 +59,7 @@ public class Administratie {
 
         for(int i = 0; i < DAGEN_IN_WEEK; i++) {
 
-            int j = 0;
-            while (j < omzet.length) {
+            for (int j = 0; j < omzet.length; j++) {
                 try {
                     temp[i] += omzet[i + DAGEN_IN_WEEK * j];
                 }
