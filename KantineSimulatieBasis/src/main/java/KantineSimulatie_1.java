@@ -1,5 +1,7 @@
 package main.java;
 
+import java.math.BigDecimal;
+
 public class KantineSimulatie_1 {
 
     private Kantine kantine;
@@ -33,8 +35,8 @@ public class KantineSimulatie_1 {
                 Dienblad dienblad = new Dienblad(klant);
 
                 String[] articlenames = {"Test1", "Test2"};
-                dienblad.voegToe(new Artikel("Test1", 12.50F));
-                dienblad.voegToe(new Artikel("Test2", 12.50F));
+                dienblad.voegToe(new Artikel("Test1", new BigDecimal(12.50F)));
+                dienblad.voegToe(new Artikel("Test2", new BigDecimal(12.50F)));
 
                 kantine.loopPakSluitAan(dienblad, articlenames);
                 // kantine.(...);

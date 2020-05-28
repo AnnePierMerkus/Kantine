@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.Test.Week2tests;
+import main.java.Test.Week3tests;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -175,7 +176,8 @@ public class KantineSimulatie_2 {
         //week2.opgave2();
         //week2.opgave4();
         //week2.opgave5();
+
+        Week3tests week3 = new Week3tests();
+        week3.opgave1();
     }
-
-
 }

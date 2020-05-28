@@ -1,5 +1,6 @@
 package main.java;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Iterator;
@@ -77,10 +78,10 @@ public class Dienblad {
      *
      * @return De totaalprijs van de artikelen op het dienblad.
      */
-    public double getTotaalPrijs() {
-        int prijs = 0;
+    public BigDecimal getTotaalPrijs() {
+        BigDecimal prijs = BigDecimal.ZERO;
         for (Artikel artikel : artikelen) {
-            prijs += artikel.getPrijs();
+            prijs = prijs.add(artikel.getPrijs());
         }
 
         return prijs;
