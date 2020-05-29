@@ -18,6 +18,12 @@ public class Docent extends Persoon {
         this.afdeling = afdeling;
     }
 
+    @Override
+    public String toString() {
+        String str = super.toString();
+        return "\nType: Docent" + str;
+    }
+
     public String getAfkorting() {
         return afkorting;
     }

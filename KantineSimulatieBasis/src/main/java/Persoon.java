@@ -68,7 +68,7 @@ public class Persoon {
     public String toString()
     {
         StringBuilder str = new StringBuilder()
-                .append("Burger Service Nummer: ")
+                .append("\nBurger Service Nummer: ")
                 .append(burgerServiceNummer)
                 .append("\nVoornaam: ")
                 .append(voornaam)

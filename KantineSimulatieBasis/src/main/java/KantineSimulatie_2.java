@@ -111,16 +111,30 @@ public class KantineSimulatie_2 {
     public void simuleer(int dagen) {
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
-
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
+            int aantalpersonen = 100;
+            int[] aantal = new int[aantalpersonen];
+            double[] omzet = new double[aantalpersonen];
 
             // laat de personen maar komen...
             for (int j = 0; j < aantalpersonen; j++) {
-
+                Persoon persoon = null;
+                if (j < 89) {
+                    persoon = new Student(String.valueOf(j), "Anne Pier", "Merkus",
+                            new Datum(10, 7, 1998), 'M', 123, "links");
+                } else if (j < 99) {
+                    persoon = new Docent(String.valueOf(j), "Anne Pier", "Merkus",
+                            new Datum(10, 7, 1998), 'M', "appie", "schoonmaker");
+                } else if (j < 100) {
+                    persoon = new KantineMedewerker(String.valueOf(j), "Anne Pier", "Merkus",
+                            new Datum(10, 7, 1998), 'M', 8423, false);
+                }
+                System.out.println(persoon.toString());
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
-                int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MIN_ARTIKELEN_PER_PERSOON);
+                int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
+                System.out.println(aantalartikelen);
+                aantal[j] = aantalartikelen;
                 Persoon customer = new Persoon(String.valueOf(j), "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
                 Dienblad dienblad = new Dienblad(customer);
 
@@ -156,6 +170,10 @@ public class KantineSimulatie_2 {
 
             // reset de kassa voor de volgende dag
            kassa.resetKassa();
+
+
+            System.out.println("berekenGemiddeldeOmzet: " + Administratie.berekenGemiddeldeOmzet(omzet));
+            System.out.println("berekenGemiddeldAantal: " + Administratie.berekenGemiddeledAantal(aantal));
         }
     }
 
@@ -176,6 +194,6 @@ public class KantineSimulatie_2 {
         //week2.opgave5();
 
         Week3tests week3 = new Week3tests();
-        week3.opgave1();
+       // week3.opgave1();
     }
 }

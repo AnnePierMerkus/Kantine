@@ -18,6 +18,13 @@ public class Student extends Persoon{
         this.studierichting = studierichting;
     }
 
+    @Override
+    public String toString() {
+        String str = super.toString();
+        return "\nType: Student" + str;
+    }
+
+
     public int getStudentnummer() {
         return studentnummer;
     }

@@ -19,6 +19,12 @@ public class KantineMedewerker extends Persoon {
         this.magAchterKassa = magAchterKassa;
     }
 
+    @Override
+    public String toString() {
+        String str = super.toString();
+        return "\nType: Kantinemedewerker" + str;
+    }
+
     public int getMedewerkersnummer() {
         return medewerkersnummer;
     }
