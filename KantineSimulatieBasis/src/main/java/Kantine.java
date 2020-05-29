@@ -17,7 +17,7 @@ public class Kantine {
     private KassaRij kassaRij;
 
     /**
-     * Hoeveel voorraad de kantine heeft van ekl artikel.
+     * Hoeveel voorraad de kantine heeft van elk artikel.
      */
     private KantineAanbod kantineAanbod;
 
@@ -27,21 +27,6 @@ public class Kantine {
     public Kantine() {
         kassaRij = new KassaRij();
         kassa = new Kassa(kassaRij);
-    }
-
-    /**
-     *
-     */
-    @Deprecated
-    public void loopPakSluitAan() {
-        // method body omitted
-        Persoon klant = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
-        Dienblad dienblad = new Dienblad(klant);
-
-        dienblad.voegToe(new Artikel("Test1", new BigDecimal(12.50F)));
-        dienblad.voegToe(new Artikel("Test2", new BigDecimal(12.50F)));
-
-        kassaRij.sluitAchteraan(dienblad);
     }
 
     /**
@@ -67,26 +52,6 @@ public class Kantine {
         }
     }
 
-    /**
-     * @deprecated vanaf versie 2.3, gebruik getkassa.getHoeveelheidGeldInKassa().
-     * @return
-     */
-    @Deprecated
-    public BigDecimal getHoeveelheidGeldInKassa() {
-        return kassa.getHoeveelheidGeldInKassa();
-    }
-
-    @Deprecated
-    public int getAantalArtikelen()
-    {
-        return kassa.getAantalArtikelen();
-    }
-
-    @Deprecated
-    public void resetKassa()
-    {
-        kassa.resetKassa();
-    }
     /**
      * Haalt de kassa variabele op.
      *

@@ -31,14 +31,7 @@ public class KantineSimulatie_1 {
 
             // for lus voor personen
             for (int j = 0; j < 10 + i; j++) {
-                Persoon klant = new Persoon("123456789", "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
-                Dienblad dienblad = new Dienblad(klant);
-
-                String[] articlenames = {"Test1", "Test2"};
-                dienblad.voegToe(new Artikel("Test1", new BigDecimal(12.50F)));
-                dienblad.voegToe(new Artikel("Test2", new BigDecimal(12.50F)));
-
-                kantine.loopPakSluitAan(dienblad, articlenames);
+               // kantine.loopPakSluitAan();
                 // kantine.(...);
             }
 

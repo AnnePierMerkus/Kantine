@@ -16,54 +16,12 @@ public class Week2tests {
     // prices
     private static BigDecimal[] artikelPrijzen = new BigDecimal[] {new BigDecimal("1.50"), new BigDecimal("2.10"), new BigDecimal("1.65"), new BigDecimal("1.65")};
 
-
-    @Test
-    public void opgave1()
-    {
-        kantine = new Kantine();
-        int[] amount = {15, 15, 15, 15};
-        kantine.setKantineAanbod(new KantineAanbod(artikelNamen, artikelPrijzen, amount));
-
-        for (int i = 0; i < 5; i++) {
-            kantine.loopPakSluitAan();
-        }
-        kantine.verwerkRijVoorKassa();
-
-        System.out.println("Geld in Kassa: " + kantine.getHoeveelheidGeldInKassa());
-        System.out.println("Artikelen langs Kassa: " + kantine.getAantalArtikelen());
-
-        kantine.resetKassa();
-        System.out.println("Geld in Kassa: " + kantine.getHoeveelheidGeldInKassa());
-        System.out.println("Artikelen langs Kassa: " + kantine.getAantalArtikelen());
-    }
-
     @Test
     public void opgave2()
     {
         int dagen = 7;
         KantineSimulatie_1 kantineSimulatie1 = new KantineSimulatie_1();
         kantineSimulatie1.simuleer(dagen);
-    }
-
-    @Test
-    public void opgave4()
-    {
-        kantine = new Kantine();
-        int[] amount = {15, 15, 15, 15};
-        kantine.setKantineAanbod(new KantineAanbod(artikelNamen, artikelPrijzen, amount));
-
-        for (int i = 0; i < 5; i++) {
-            kantine.loopPakSluitAan();
-        }
-        kantine.verwerkRijVoorKassa();
-
-        Kassa kassa = kantine.getKassa();
-        System.out.println("Geld in Kassa: " + kassa.getHoeveelheidGeldInKassa());
-        System.out.println("Artikelen langs Kassa: " + kassa.getAantalArtikelen());
-
-        kassa.resetKassa();
-        System.out.println("Geld in Kassa: " + kassa.getHoeveelheidGeldInKassa());
-        System.out.println("Artikelen langs Kassa: " + kassa.getAantalArtikelen());
     }
 
     @Test

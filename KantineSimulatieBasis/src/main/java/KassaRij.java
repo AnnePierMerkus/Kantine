@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class KassaRij {
-    //LinkedList<Dienblad> wachtrij;
-
     /**
      * De wachtrij bij de kassa.
      */
-    ArrayList<Dienblad> wachtrij;
+    LinkedList<Dienblad> wachtrij;
 
     /**
      * Constructor voor kassarij die een nieuwe wachtrij aanmaakt.
      */
     public KassaRij() {
-        wachtrij = new ArrayList<>();
+        wachtrij = new LinkedList<>() {
+        };
     }
 
     /**
@@ -24,7 +23,7 @@ public class KassaRij {
      * @param klant de klant die achteraan de rij sluit.
      */
     public void sluitAchteraan(Dienblad klant) {
-       wachtrij.add(klant);
+       wachtrij.offerLast(klant);
     }
 
     /**
@@ -34,7 +33,7 @@ public class KassaRij {
      * @return Eerste klant in de rij of null als de rij leeg is.
      */
     public Dienblad eerstePersoonInRij() {
-        return erIsEenRij() ? wachtrij.remove(0) : null;
+        return erIsEenRij() ? wachtrij.poll() : null;
     }
 
     /**

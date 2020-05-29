@@ -172,9 +172,7 @@ public class KantineSimulatie_2 {
 
 
         Week2tests week2 = new Week2tests();
-        //week2.opgave1();
         //week2.opgave2();
-        //week2.opgave4();
         //week2.opgave5();
 
         Week3tests week3 = new Week3tests();
