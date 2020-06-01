@@ -1,5 +1,9 @@
 package main.java;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
+
 public class Administratie {
 
     /**
@@ -21,14 +25,14 @@ public class Administratie {
      * @param aantal is een array van type Int
      * @return De gemmidelde waarde van de aantallen in de Array aantal
      */
-    public static double berekenGemiddeledAantal(int[] aantal) {
-        double totaal = 0;
+    public static BigDecimal berekenGemiddeledAantal(int[] aantal) {
+        BigDecimal totaal = BigDecimal.ZERO;
         for (int i = 0; i < aantal.length; i++)
         {
-            totaal += aantal[i];
+            totaal = totaal.add(BigDecimal.valueOf(aantal[i]));
         }
 
-        return totaal / aantal.length;
+        return totaal.divide(BigDecimal.valueOf(aantal.length), 4, RoundingMode.FLOOR).stripTrailingZeros();
     }
 
     /**
@@ -37,14 +41,14 @@ public class Administratie {
      * @param omzet is een Array van het type double waarin de omzetten van een gegeven tijdsperiode worden opgeslagen.
      * @return de gemiddelde omzet van de omzetten die in de array staan
      */
-    public static double berekenGemiddeldeOmzet(double[] omzet) {
-        double totaal = 0;
+    public static BigDecimal berekenGemiddeldeOmzet(double[] omzet) {
+        BigDecimal totaal = BigDecimal.ZERO;
         for (int i = 0; i < omzet.length; i++)
         {
-            totaal += omzet[i];
+            totaal = totaal.add(BigDecimal.valueOf(omzet[i])) ;
         }
 
-        return totaal / omzet.length;
+        return totaal.divide(BigDecimal.valueOf(omzet.length), 4, RoundingMode.FLOOR).stripTrailingZeros();
     }
 
     /**
@@ -54,14 +58,17 @@ public class Administratie {
      * @return De dagelijkse omzet van een gegeven dag over een tijdsperiode.
      */
 
-    public static double[] berekenDagelijkseOmzet(double[] omzet) {
-        double[] temp = new double[DAGEN_IN_WEEK];
+    public static BigDecimal[] berekenDagelijkseOmzet(double[] omzet) {
+        BigDecimal[] temp = new BigDecimal[DAGEN_IN_WEEK];
+        Arrays.fill(temp, BigDecimal.ZERO);
 
         for(int i = 0; i < DAGEN_IN_WEEK; i++) {
-
             for (int j = 0; j < omzet.length; j++) {
+
+                int dag = i + DAGEN_IN_WEEK * j;
                 try {
-                    temp[i] += omzet[i + DAGEN_IN_WEEK * j];
+                        temp[i] = temp[i].add(BigDecimal.valueOf(omzet[dag]));
+
                 }
                 catch(Exception e)
                 {

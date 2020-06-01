@@ -109,34 +109,38 @@ public class KantineSimulatie_2 {
      * @param dagen
      */
     public void simuleer(int dagen) {
+        int[] aantal = new int[dagen];
+        double[] omzet = new double[dagen];
+
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
-            // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = 100;
-            int[] aantal = new int[aantalpersonen];
-            double[] omzet = new double[aantalpersonen];
 
-            // laat de personen maar komen...
-            for (int j = 0; j < aantalpersonen; j++) {
+            // laat de personen maar komen..
+            for (int j = 0; j < 100; j++) {
+
                 Persoon persoon = null;
-                if (j < 89) {
+                int randomPersoon = random.nextInt(100);
+                if (randomPersoon < 89) {
                     persoon = new Student(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', 123, "links");
-                } else if (j < 99) {
+                }
+                else if (randomPersoon < 99) {
                     persoon = new Docent(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', "appie", "schoonmaker");
-                } else if (j < 100) {
+                }
+                else if (randomPersoon < 100) {
                     persoon = new KantineMedewerker(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', 8423, false);
                 }
-                System.out.println(persoon.toString());
+
+                Dienblad dienblad = new Dienblad(persoon);
+                if (persoon != null) {
+                    System.out.println(persoon.toString());
+                }
+
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
-                System.out.println(aantalartikelen);
-                aantal[j] = aantalartikelen;
-                Persoon customer = new Persoon(String.valueOf(j), "Anne Pier", "Merkus", new Datum(10, 7, 1998), 'M');
-                Dienblad dienblad = new Dienblad(customer);
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
@@ -157,24 +161,35 @@ public class KantineSimulatie_2 {
             // druk de dagtotalen af en hoeveel personen binnen
             // zijn gekomen
             Kassa kassa = kantine.getKassa();
-            int dag = i + 1;
+
+            aantal[i] = kassa.getAantalArtikelen();
+            omzet[i] = kassa.getHoeveelheidGeldInKassa().doubleValue();
+
+           /* int dag = i + 1;
 
             StringBuilder str = new StringBuilder()
                     .append("\nDag: ")
                     .append(dag)
                     .append("\nDagtotaal:       ")
                     .append(kassa.getHoeveelheidGeldInKassa())
-                    .append("\nAantal personen: ")
-                    .append(aantalpersonen);
-            System.out.println(str);
-
+                    .append("\nAantal personen: ");
+            //System.out.println(str);
+            */
             // reset de kassa voor de volgende dag
-           kassa.resetKassa();
-
-
-            System.out.println("berekenGemiddeldeOmzet: " + Administratie.berekenGemiddeldeOmzet(omzet));
-            System.out.println("berekenGemiddeldAantal: " + Administratie.berekenGemiddeledAantal(aantal));
+            kassa.resetKassa();
         }
+
+        BigDecimal[] omzetPerDag = Administratie.berekenDagelijkseOmzet(omzet);
+
+        StringBuilder str = new StringBuilder()
+                .append("\nGemiddelde antal artikelen per dag: ")
+                .append(Administratie.berekenGemiddeledAantal(aantal))
+                .append("\nGemiddelde Omzet per dag: ")
+                .append(Administratie.berekenGemiddeldeOmzet(omzet))
+                .append("\nOmzet op maandag: ").append(omzetPerDag[0]).append("\nOmzet op dinsdag: ").append(omzetPerDag[1]).append("\nOmzet op woensdag: ").append(omzetPerDag[2])
+                .append("\nOmzet op donderdag: ").append(omzetPerDag[3]).append("\nOmzet op vrijdag: ").append(omzetPerDag[4]).append("\nOmzet op zaterdag: ").append(omzetPerDag[5])
+                .append("\nOmzet op zondag: ").append(omzetPerDag[6]);
+        System.out.println(str);
     }
 
     public static void main(String[] args) {
@@ -188,12 +203,11 @@ public class KantineSimulatie_2 {
         KantineSimulatie_2 kantineSimulatie2 = new KantineSimulatie_2();
         kantineSimulatie2.simuleer(dagen);
 
-
         Week2tests week2 = new Week2tests();
         //week2.opgave2();
         //week2.opgave5();
 
         Week3tests week3 = new Week3tests();
-       // week3.opgave1();
+        //week3.opgave2();
     }
 }
