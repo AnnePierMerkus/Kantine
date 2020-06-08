@@ -9,6 +9,8 @@ public class KantineAanbod {
     private HashMap<String, Integer> startVoorraad;
     private HashMap<String, BigDecimal> prijzen;
 
+    private static final int MIN_ARTIKELEN = 10;
+
     /**
      * Constructor. Het eerste argument is een lijst met artikelnamen, het tweede argument is
      * eenlijst met prijzen en het derde argument is een lijst met hoeveelheden. Let op: de
@@ -61,7 +63,7 @@ public class KantineAanbod {
         } else {
             Artikel a = stapel.get(0);
             stapel.remove(0);
-            if (stapel.size() <= 10) {
+            if (stapel.size() <= MIN_ARTIKELEN) {
                 vulVoorraadAan(a.getNaam());
             }
             return a;

@@ -1,6 +1,6 @@
 package main.java;
 
-public class Docent extends Persoon {
+public class Docent extends Persoon implements KortingskaartHouder{
     /**
      * De afkorting van de naam van de docent.
      */
@@ -40,9 +40,18 @@ public class Docent extends Persoon {
     }
 
 
+    @Override
+    public double geefKortingsPercentage() {
+        return 20;
+    }
 
+    @Override
+    public boolean heeftMaximum() {
+        return true;
+    }
 
-
-
-
+    @Override
+    public double geefMaximum() {
+        return 7;
+    }
 }

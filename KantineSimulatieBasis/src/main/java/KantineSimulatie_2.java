@@ -121,6 +121,7 @@ public class KantineSimulatie_2 {
                 Persoon persoon = null;
                 int randomPersoon = random.nextInt(100);
                 if (randomPersoon < 89) {
+
                     persoon = new Student(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', 123, "links");
                 }
@@ -208,6 +209,6 @@ public class KantineSimulatie_2 {
         //week2.opgave5();
 
         Week3tests week3 = new Week3tests();
-        //week3.opgave2();
+        week3.opgave2();
     }
 }

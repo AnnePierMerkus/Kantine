@@ -66,14 +66,11 @@ public class Administratie {
             for (int j = 0; j < omzet.length; j++) {
 
                 int dag = i + DAGEN_IN_WEEK * j;
-                try {
-                        temp[i] = temp[i].add(BigDecimal.valueOf(omzet[dag]));
-
-                }
-                catch(Exception e)
-                {
+                if (dag >= omzet.length) {
                     break;
                 }
+
+                temp[i] = temp[i].add(BigDecimal.valueOf(omzet[dag]));
             }
         }
         return temp;

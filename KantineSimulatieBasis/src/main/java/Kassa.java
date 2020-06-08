@@ -1,12 +1,15 @@
 package main.java;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Iterator;
 
 /**
  * Kassa.java is de klasse waarin alle afgerekende artikelen en de prijs voor die artikelen wordt bijgehouden.
  */
 public class Kassa {
+    public static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
+
     /**
      * Aantal artikelen dat de kassa is binnengekomen op een dag.
      */
@@ -37,15 +40,34 @@ public class Kassa {
         int klantArtikelenAantal = 0;
 
         Iterator<Artikel> it = klant.getArtikelenIter();
-
         while (it.hasNext()) {
             totaal = totaal.add(it.next().getPrijs());
             klantArtikelenAantal++;
         }
-        //System.out.println(totaal);
 
-        geldInKassa = geldInKassa.add(totaal);
-        aantalArtikelen += klantArtikelenAantal;
+        Persoon persoon = klant.getKlant();
+
+        if (persoon instanceof KortingskaartHouder)
+        {
+            KortingskaartHouder kaartHouder = (KortingskaartHouder) persoon;
+            BigDecimal korting = totaal.divide(ONE_HUNDRED, 2, RoundingMode.DOWN).multiply(BigDecimal.valueOf(kaartHouder.geefKortingsPercentage()));
+            if (korting.doubleValue() > kaartHouder.geefMaximum() && kaartHouder.heeftMaximum())
+            {
+                korting = BigDecimal.valueOf(kaartHouder.geefMaximum());
+            }
+            totaal = totaal.subtract(korting);
+        }
+
+        BetaalWijze betaalWijze = persoon.getBetaalWijze();
+        try {
+            betaalWijze.betaal(totaal.doubleValue());
+
+            geldInKassa = geldInKassa.add(totaal);
+            aantalArtikelen += klantArtikelenAantal;
+        } catch (TeWeinigGeldException e) {
+            System.out.println(persoon.getVoornaam() + " " + persoon.getAchternaam() + " heeft te weinig geld om te betalen.");
+        }
+
     }
 
     /**

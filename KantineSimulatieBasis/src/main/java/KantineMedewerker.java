@@ -1,6 +1,6 @@
 package main.java;
 
-public class KantineMedewerker extends Persoon {
+public class KantineMedewerker extends Persoon implements KortingskaartHouder{
     /**
      * Het medewerkersnummer van deze medewerker.
      */
@@ -40,4 +40,18 @@ public class KantineMedewerker extends Persoon {
     }
 
 
+    @Override
+    public double geefKortingsPercentage() {
+        return 40;
+    }
+
+    @Override
+    public boolean heeftMaximum() {
+        return false;
+    }
+
+    @Override
+    public double geefMaximum() {
+        return 0;
+    }
 }

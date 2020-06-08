@@ -29,6 +29,7 @@ public class Persoon {
      */
     char geslacht;
 
+    private BetaalWijze betaalWijze;
     /**
      * Maakt een nieuwe instantie van de klasse persoon en zet de gegeven waardes in de variabelen.
      *
@@ -135,6 +136,10 @@ public class Persoon {
         }
     }
 
+    public BetaalWijze getBetaalWijze() {
+        return betaalWijze;
+    }
+
     /**
      * Veranderd het Burger Service Nummer van de persoon.
      *
@@ -186,5 +191,9 @@ public class Persoon {
         {
             this.geslacht = 'o';
         }
+    }
+
+    public void setBetaalWijze(BetaalWijze betaalWijze) {
+        this.betaalWijze = betaalWijze;
     }
 }
