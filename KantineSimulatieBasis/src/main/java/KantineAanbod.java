@@ -10,6 +10,7 @@ public class KantineAanbod {
     private HashMap<String, BigDecimal> prijzen;
 
     private static final int MIN_ARTIKELEN = 10;
+    private String kortingArtikelNaam;
 
     /**
      * Constructor. Het eerste argument is een lijst met artikelnamen, het tweede argument is
@@ -31,13 +32,26 @@ public class KantineAanbod {
         }
     }
 
+    public void setKorting(String kortingArtikelNaam, BigDecimal percentage)
+    {
+        ArrayList<Artikel> kortingArtikel = aanbod.get(kortingArtikelNaam);
+        for (Artikel a : kortingArtikel) {
+            a.setKorting(a.getPrijs().multiply(percentage));
+        }
+
+        this.kortingArtikelNaam = kortingArtikelNaam;
+    }
+
     private void vulVoorraadAan(String productnaam) {
         ArrayList<Artikel> huidigeVoorraad = aanbod.get(productnaam);
+
         int startHoeveelheid = startVoorraad.get(productnaam);
         int huidigeHoeveelheid = huidigeVoorraad.size();
+
         BigDecimal prijs = prijzen.get(productnaam);
+        BigDecimal korting = prijs.multiply(new BigDecimal("0.2"));
         for (int j = huidigeHoeveelheid; j < startHoeveelheid; j++) {
-            huidigeVoorraad.add(new Artikel(productnaam, prijs));
+            huidigeVoorraad.add(productnaam.equals(kortingArtikelNaam) ? new Artikel(productnaam, prijs, korting) : new Artikel(productnaam, prijs));
         }
         aanbod.put(productnaam, huidigeVoorraad);
     }

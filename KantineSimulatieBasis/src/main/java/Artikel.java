@@ -16,6 +16,7 @@ public class Artikel {
      */
     String naam;
 
+    BigDecimal korting;
     /**
      * Constructor die standaard waardes geeft aan de variabelen.
      */
@@ -29,9 +30,23 @@ public class Artikel {
      * @param naam naam die aan het artikel toegewezen word
      * @param prijs prijs die aan het artikel toegewezen word
      */
+    public Artikel(String naam, BigDecimal prijs, BigDecimal korting) {
+        this.naam = naam;
+        this.prijs = prijs;
+        this.korting = korting;
+    }
+
+    /**
+     * Constructor voor de Klasse artikel, initialiseerd de waarden van de variabelen.
+     * Constructor for the article class, initializes the values of the variables.
+     *
+     * @param naam naam die aan het artikel toegewezen word
+     * @param prijs prijs die aan het artikel toegewezen word
+     */
     public Artikel(String naam, BigDecimal prijs) {
         this.naam = naam;
         this.prijs = prijs;
+        korting = BigDecimal.ZERO;
     }
 
     /**
@@ -67,6 +82,10 @@ public class Artikel {
         return naam;
     }
 
+    public BigDecimal getKorting() {
+        return korting.stripTrailingZeros();
+    }
+
     /**
      * Veranderd de prijs van het artikel.
      *
@@ -83,5 +102,9 @@ public class Artikel {
      */
     public void setNaam(String naam) {
         this.naam = naam;
+    }
+
+    public void setKorting(BigDecimal korting) {
+        this.korting = korting;
     }
 }

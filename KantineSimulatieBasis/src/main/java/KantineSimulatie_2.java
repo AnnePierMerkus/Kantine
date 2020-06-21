@@ -3,9 +3,12 @@ package main.java;
 import main.java.Test.Week2tests;
 import main.java.Test.Week3tests;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
-
 import static main.java.KantineSimulatie_1.DAGEN;
 
 public class KantineSimulatie_2 {
@@ -114,29 +117,41 @@ public class KantineSimulatie_2 {
 
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
+            String kortingArtikelNaam = artikelNamen[random.nextInt(artikelNamen.length)];
+            kantineAanbod.setKorting(kortingArtikelNaam, new BigDecimal("0.2"));
 
             // laat de personen maar komen..
-            for (int j = 0; j < 100; j++) {
-
+            for (int j = 0; j < 1; j++) {
                 Persoon persoon = null;
                 int randomPersoon = random.nextInt(100);
                 if (randomPersoon < 89) {
-
                     persoon = new Student(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', 123, "links");
+
+                    Pinpas pinpas = new Pinpas();
+                    pinpas.setSaldo(500);
+                    persoon.setBetaalWijze(pinpas);
                 }
                 else if (randomPersoon < 99) {
                     persoon = new Docent(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', "appie", "schoonmaker");
+
+                    Pinpas pinpas = new Pinpas();
+                    pinpas.setSaldo(100);
+                    persoon.setBetaalWijze(pinpas);
                 }
                 else if (randomPersoon < 100) {
                     persoon = new KantineMedewerker(String.valueOf(j), "Anne Pier", "Merkus",
                             new Datum(10, 7, 1998), 'M', 8423, false);
+
+                    Pinpas pinpas = new Pinpas();
+                    pinpas.setSaldo(500);
+                    persoon.setBetaalWijze(pinpas);
                 }
 
                 Dienblad dienblad = new Dienblad(persoon);
                 if (persoon != null) {
-                    System.out.println(persoon.toString());
+                    //System.out.println(persoon.toString());
                 }
 
                 // maak persoon en dienblad aan, koppel ze
@@ -178,6 +193,7 @@ public class KantineSimulatie_2 {
             */
             // reset de kassa voor de volgende dag
             kassa.resetKassa();
+            kantineAanbod.setKorting(kortingArtikelNaam, new BigDecimal("0"));
         }
 
         BigDecimal[] omzetPerDag = Administratie.berekenDagelijkseOmzet(omzet);
@@ -190,10 +206,15 @@ public class KantineSimulatie_2 {
                 .append("\nOmzet op maandag: ").append(omzetPerDag[0]).append("\nOmzet op dinsdag: ").append(omzetPerDag[1]).append("\nOmzet op woensdag: ").append(omzetPerDag[2])
                 .append("\nOmzet op donderdag: ").append(omzetPerDag[3]).append("\nOmzet op vrijdag: ").append(omzetPerDag[4]).append("\nOmzet op zaterdag: ").append(omzetPerDag[5])
                 .append("\nOmzet op zondag: ").append(omzetPerDag[6]);
-        System.out.println(str);
+        //System.out.println(str);
     }
 
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
+    private static EntityManager manager;
+
     public static void main(String[] args) {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        System.out.println(manager);
         int dagen;
 
         if (args.length == 0) {
@@ -204,11 +225,7 @@ public class KantineSimulatie_2 {
         KantineSimulatie_2 kantineSimulatie2 = new KantineSimulatie_2();
         kantineSimulatie2.simuleer(dagen);
 
-        Week2tests week2 = new Week2tests();
-        //week2.opgave2();
-        //week2.opgave5();
-
-        Week3tests week3 = new Week3tests();
-        week3.opgave2();
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
     }
 }

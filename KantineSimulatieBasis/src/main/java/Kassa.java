@@ -1,7 +1,12 @@
 package main.java;
 
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
+
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Iterator;
 
 /**
@@ -20,7 +25,6 @@ public class Kassa {
      */
     BigDecimal geldInKassa;
 
-
     /**
      * Constructor voor de klasse Kassa die de variabelen op 0 zet.
      */
@@ -36,27 +40,14 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        BigDecimal totaal = new BigDecimal(0);
+        Factuur factuur = new Factuur(klant, LocalDateTime.now());
+        System.out.println(factuur);
+        BigDecimal totaal = factuur.getTotaal();;
+
+        // TODO remember this thing
         int klantArtikelenAantal = 0;
 
-        Iterator<Artikel> it = klant.getArtikelenIter();
-        while (it.hasNext()) {
-            totaal = totaal.add(it.next().getPrijs());
-            klantArtikelenAantal++;
-        }
-
         Persoon persoon = klant.getKlant();
-
-        if (persoon instanceof KortingskaartHouder)
-        {
-            KortingskaartHouder kaartHouder = (KortingskaartHouder) persoon;
-            BigDecimal korting = totaal.divide(ONE_HUNDRED, 2, RoundingMode.DOWN).multiply(BigDecimal.valueOf(kaartHouder.geefKortingsPercentage()));
-            if (korting.doubleValue() > kaartHouder.geefMaximum() && kaartHouder.heeftMaximum())
-            {
-                korting = BigDecimal.valueOf(kaartHouder.geefMaximum());
-            }
-            totaal = totaal.subtract(korting);
-        }
 
         BetaalWijze betaalWijze = persoon.getBetaalWijze();
         try {
@@ -67,7 +58,6 @@ public class Kassa {
         } catch (TeWeinigGeldException e) {
             System.out.println(persoon.getVoornaam() + " " + persoon.getAchternaam() + " heeft te weinig geld om te betalen.");
         }
-
     }
 
     /**
